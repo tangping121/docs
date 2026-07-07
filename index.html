@@ -379,7 +379,7 @@ body {
           <button class="trend-tab active" onclick="setTrendRange('week',this)">近7天</button>
           <button class="trend-tab" onclick="setTrendRange('month',this)">近30天</button>
         </div>
-        <svg class="trend-chart" id="trend-chart" viewBox="0 0 700 160" preserveAspectRatio="none"></svg>
+        <div style="width:100%;height:160px" id="trend-chart-container"></div>
       </div>
       <div class="achievement-row" id="dashboard-achievements"></div>
       <div class="record-section">
@@ -514,7 +514,7 @@ const ASSESS_DIMS = [
 ];
 
 const ACHIEVEMENTS = [
-  {id:"a1",icon:"🌟",name:"第一步",desc:"完成第一次打卡",check:s=>Object.values(s.records).some(r=>Object.values(r.items||{}).some(v=>v)))},
+  {id:"a1",icon:"🌟",name:"第一步",desc:"完成第一次打卡",check:s=>Object.values(s.records).some(r=>Object.values(r.items||{}).some(v=>v))},
   {id:"a2",icon:"🔥",name:"坚持3天",desc:"连续3天有记录",check:s=>calcStreak()>=3},
   {id:"a3",icon:"💪",name:"坚持7天",desc:"连续7天有记录",check:s=>calcStreak()>=7},
   {id:"a4",icon:"🏅",name:"坚持14天",desc:"连续14天有记录",check:s=>calcStreak()>=14},
@@ -524,7 +524,7 @@ const ACHIEVEMENTS = [
   {id:"a8",icon:"✏️",name:"书写起步",desc:"完成第一次书写练习",check:s=>['writing-lines-0','writing-lines-1','writing-shape-0','writing-chars-0'].some(k=>countItemDone(k)>0)},
   {id:"a9",icon:"🗣️",name:"社交起步",desc:"完成第一次社交训练",check:s=>['social-express-0','social-express-1','social-interact-0'].some(k=>countItemDone(k)>0)},
   {id:"a10",icon:"🎯",name:"专注力全绿",desc:"专注力评估5项全部✅",check:s=>s.assessments.length>0&&s.assessments[s.assessments.length-1].results&&Object.values(s.assessments[s.assessments.length-1].results).every(v=>v==='green')},
-  {id:"a11",icon:"✅",name:"周检满分",desc:"一周检查表全部完成",check:s=>Object.values(s.weeklyChecks).some(w=>Object.keys(w).length>=WEEKLY_CHECKLIST.length&&Object.values(w).every(v=>v)))},
+  {id:"a11",icon:"✅",name:"周检满分",desc:"一周检查表全部完成",check:s=>Object.values(s.weeklyChecks).some(w=>Object.keys(w).length>=WEEKLY_CHECKLIST.length&&Object.values(w).every(v=>v))},
   {id:"a12",icon:"🌈",name:"六项全能",desc:"6个项目都有打卡记录",check:s=>{const p=new Set();PROJECTS_DATA.projects.forEach(pr=>pr.phases.forEach(ph=>ph.items.forEach((_,i)=>{if(countItemDone(ph.id+'-'+i)>0)p.add(pr.id)})));return p.size>=6}},
   {id:"a13",icon:"📝",name:"笔记达人",desc:"累计写10条笔记",check:s=>Object.values(s.dailyNotes).filter(n=>n&&n.trim().length>0).length>=10},
   {id:"a14",icon:"🚀",name:"百日征途",desc:"累计记录100天",check:s=>Object.keys(s.records).filter(k=>Object.values(s.records[k].items||{}).some(v=>v)).length>=100},
@@ -620,7 +620,7 @@ function renderTrendChart(){
     ${data.map((d,i)=>`<circle cx="${pad+i*xStep}" cy="${pad+chartH-(d.value/maxVal)*chartH}" r="3.5" fill="var(--chart-line)"/>`).join('')}
     ${xLabels}
   </svg>`;
-  document.getElementById('trend-chart').outerHTML=`<div style="width:100%;height:160px" id="trend-chart-wrap">${chartHtml}</div>`;
+  document.getElementById('trend-chart-container').innerHTML=chartHtml;
 }
 
 // ===== Custom Tasks =====
