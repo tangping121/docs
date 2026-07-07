@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>幼小衔接家庭指导方案</title>
+<style>
+:root {
+  --primary: #4A90D9;
+  --primary-light: #E8F2FC;
+  --accent: #F5A623;
+  --accent-light: #FEF5E7;
+  --green: #52C41A;
+  --green-light: #F0FBEB;
+  --red: #FF4D4F;
+  --text: #2C3E50;
+  --text-light: #7F8C8D;
+  --bg: #FAFBFC;
+  --card: #FFFFFF;
+  --border: #E8ECF0;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+  padding: 0;
+}
+.header {
+  background: linear-gradient(135deg, #4A90D9 0%, #357ABD 100%);
+  color: white;
+  padding: 48px 40px;
+  text-align: center;
+}
+.header h1 { font-size: 32px; margin-bottom: 8px; letter-spacing: 2px; }
+.header .subtitle { font-size: 16px; opacity: 0.85; }
+.header .meta { margin-top: 16px; font-size: 13px; opacity: 0.7; }
+.container { max-width: 900px; margin: 0 auto; padding: 32px 24px; }
+
+.section { margin-bottom: 40px; }
+.section-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 16px;
+  padding-left: 14px;
+  border-left: 4px solid var(--primary);
+}
+.section-title .emoji { margin-right: 8px; }
+
+.card {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  border: 1px solid var(--border);
+}
+.card-title {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.card-title .tag {
+  font-size: 12px;
+  padding: 2px 10px;
+  border-radius: 10px;
+  font-weight: 400;
+}
+.tag-blue { background: var(--primary-light); color: var(--primary); }
+.tag-orange { background: var(--accent-light); color: var(--accent); }
+.tag-green { background: var(--green-light); color: var(--green); }
+
+.phase-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.phase-box {
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+}
+.phase-box h3 { font-size: 15px; margin-bottom: 4px; }
+.phase-box p { font-size: 13px; }
+.phase-1 { background: var(--primary-light); color: var(--primary); }
+.phase-2 { background: var(--accent-light); color: var(--accent); }
+.phase-3 { background: var(--green-light); color: var(--green); }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 8px 0;
+  font-size: 14px;
+}
+th {
+  background: var(--primary-light);
+  color: var(--primary);
+  padding: 10px 12px;
+  text-align: left;
+  font-weight: 600;
+  border-radius: 6px 6px 0 0;
+}
+td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+tr:last-child td { border-bottom: none; }
+
+.daily-schedule {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 0;
+  font-size: 14px;
+}
+.daily-schedule .time {
+  background: var(--primary-light);
+  color: var(--primary);
+  padding: 10px 14px;
+  font-weight: 600;
+  border-right: 2px solid var(--primary);
+}
+.daily-schedule .activity {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+}
+.daily-schedule .row { display: contents; }
+
+.checklist {
+  list-style: none;
+  padding: 0;
+}
+.checklist li {
+  padding: 8px 0 8px 28px;
+  position: relative;
+  font-size: 14px;
+}
+.checklist li::before {
+  content: "☐";
+  position: absolute;
+  left: 0;
+  font-size: 18px;
+  color: var(--primary);
+}
+.checklist li.done::before { content: "☑"; color: var(--green); }
+
+.timeline {
+  position: relative;
+  padding-left: 28px;
+}
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: var(--border);
+}
+.timeline-item {
+  position: relative;
+  margin-bottom: 20px;
+}
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -24px;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--primary);
+  border: 2px solid white;
+  box-shadow: 0 0 0 2px var(--primary);
+}
+.timeline-item h4 { font-size: 15px; margin-bottom: 4px; }
+.timeline-item p { font-size: 14px; color: var(--text-light); }
+
+.warn-box {
+  background: #FFF7F0;
+  border: 1px solid #FFE0C7;
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin: 16px 0;
+}
+.warn-box h4 { color: #D46B08; margin-bottom: 8px; font-size: 15px; }
+.warn-box ul { padding-left: 20px; font-size: 14px; }
+.warn-box li { margin-bottom: 4px; }
+
+.tip-box {
+  background: var(--green-light);
+  border-left: 4px solid var(--green);
+  border-radius: 0 8px 8px 0;
+  padding: 14px 18px;
+  margin: 12px 0;
+  font-size: 14px;
+}
+.tip-box strong { color: var(--green); }
+
+.summary {
+  background: linear-gradient(135deg, #4A90D9 0%, #357ABD 100%);
+  color: white;
+  border-radius: 12px;
+  padding: 28px;
+  text-align: center;
+  margin-top: 32px;
+}
+.summary h3 { font-size: 18px; margin-bottom: 8px; }
+.summary p { font-size: 14px; opacity: 0.9; }
+
+@media (max-width: 600px) {
+  .phase-grid { grid-template-columns: 1fr; }
+  .daily-schedule { grid-template-columns: 80px 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>幼小衔接家庭指导方案</h1>
+  <div class="subtitle">不报班，在家科学衔接 —— 大班全年行动计划</div>
+  <div class="meta">适用对象：大班孩子（5-6岁） | 周期：大班9月 ~ 小学开学前</div>
+</div>
+
+<div class="container">
+
+<!-- 总体阶段划分 -->
+<div class="section">
+  <div class="section-title"><span class="emoji">📅</span>总体节奏：三阶段推进</div>
+  <div class="phase-grid">
+    <div class="phase-box phase-1">
+      <h3>第一阶段 · 9月-12月</h3>
+      <p>习惯筑基期<br>抓作息、抓专注力、抓自理</p>
+    </div>
+    <div class="phase-box phase-2">
+      <h3>第二阶段 · 1月-4月</h3>
+      <p>能力发展期<br>阅读识字、数感培养、社交训练</p>
+    </div>
+    <div class="phase-box phase-3">
+      <h3>第三阶段 · 5月-8月</h3>
+      <p>模拟适应期<br>课堂模拟、心理建设、物品准备</p>
+    </div>
+  </div>
+</div>
+
+<!-- 第一阶段 -->
+<div class="section">
+  <div class="section-title"><span class="emoji">①</span>第一阶段：习惯筑基期（9月-12月）</div>
+
+  <div class="card">
+    <div class="card-title">🎯 目标 <span class="tag tag-blue">最关键阶段</span></div>
+    <p style="font-size:14px;color:var(--text-light);">这个阶段不碰知识学习，全部精力放在习惯上。习惯一旦养好，后面事半功倍。</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">作息调整：向小学靠拢</div>
+    <table>
+      <thead>
+        <tr><th>时间</th><th>安排</th><th>说明</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>7:00</td><td>起床</td><td>比幼儿园早起30分钟，练习自己穿衣服</td></tr>
+        <tr><td>7:30</td><td>早餐</td><td>15-20分钟吃完，不追着喂</td></tr>
+        <tr><td>12:30-13:30</td><td>午睡（逐步缩短）</td><td>9-10月睡1小时 → 11-12月睡30分钟 → 暑假取消</td></tr>
+        <tr><td>21:00</td><td>洗漱上床</td><td>21:00前必须上床，21:15入睡</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">专注力训练：从玩开始</div>
+    <table>
+      <thead>
+        <tr><th>月份</th><th>训练方式</th><th>目标时长</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>9月</td><td>拼图、积木、迷宫书（孩子自选）</td><td>15分钟</td></tr>
+        <tr><td>10月</td><td>增加画画、手工、听故事</td><td>20分钟</td></tr>
+        <tr><td>11月</td><td>加入"任务型"活动：按指令完成3步操作</td><td>25分钟</td></tr>
+        <tr><td>12月</td><td>模拟"上课"：坐在桌前完成一项任务</td><td>30分钟</td></tr>
+      </tbody>
+    </table>
+    <div class="tip-box">
+      <strong>关键原则：</strong>孩子专注时绝不打断（不送水、不擦汗、不喊吃饭）。专注力是被"保护"出来的，不是被"训练"出来的。
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">自理能力清单</div>
+    <ul class="checklist">
+      <li>自己穿脱衣服、系扣子、拉拉链</li>
+      <li>自己穿鞋、系鞋带（或改用魔术贴）</li>
+      <li>自己吃饭、不挑食、能在规定时间内吃完</li>
+      <li>自己上厕所、擦屁股、冲水、洗手</li>
+      <li>自己收拾玩具、归位</li>
+      <li>自己整理书包（哪怕只是一个空包）</li>
+      <li>能清楚表达自己的需求（"我要喝水""我肚子疼"）</li>
+      <li>能听懂并执行2-3步指令（"先去洗手，然后拿碗，最后坐好"）</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 第二阶段 -->
+<div class="section">
+  <div class="section-title"><span class="emoji">②</span>第二阶段：能力发展期（1月-4月）</div>
+
+  <div class="card">
+    <div class="card-title">📖 阅读与识字 <span class="tag tag-orange">每天20分钟</span></div>
+    <table>
+      <thead><tr><th>项目</th><th>方法</th><th>目标</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>亲子阅读</td>
+          <td>每天固定时间20分钟，家长读→孩子指读→孩子复述</td>
+          <td>培养阅读兴趣和语感</td>
+        </tr>
+        <tr>
+          <td>识字</td>
+          <td>生活中学：路牌、超市标签、绘本标题、食品包装</td>
+          <td>认识200-300字（不追求数量）</td>
+        </tr>
+        <tr>
+          <td>指读练习</td>
+          <td>家长读书时手指跟着字走，孩子眼睛跟着手指走</td>
+          <td>建立"字→音→义"的对应意识</td>
+        </tr>
+        <tr>
+          <td>拼音启蒙</td>
+          <td>听儿歌《拼音歌》，玩拼音卡片游戏，不求学会</td>
+          <td>有初步印象即可，不要求会写会拼</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="warn-box">
+      <h4>⚠️ 三个不要</h4>
+      <ul>
+        <li><strong>不要</strong>用字卡机械记忆——脱离语境的识字效果差，还破坏兴趣</li>
+        <li><strong>不要</strong>提前学完整拼音——小学会系统教，学完了上课不听</li>
+        <li><strong>不要</strong>考孩子"这个字念什么"——把识字变成考试，孩子会抵触</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🔢 数学与逻辑 <span class="tag tag-orange">融入生活</span></div>
+    <table>
+      <thead><tr><th>能力</th><th>训练方法</th><th>达标标准</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>数感</td>
+          <td>数楼梯、数水果、数筷子；"多几个/少几个"的游戏</td>
+          <td>熟练数1-100，理解"多3个""少2个"</td>
+        </tr>
+        <tr>
+          <td>运算启蒙</td>
+          <td>分糖果：5颗糖你2颗我3颗；吃饭时"还剩几口"</td>
+          <td>理解10以内的分合（不用会写算式）</td>
+        </tr>
+        <tr>
+          <td>空间与方位</td>
+          <td>分清左右（贴小红花在右手）、上下前后</td>
+          <td>能听懂"向左转""把书放在桌子上面"</td>
+        </tr>
+        <tr>
+          <td>时间认知</td>
+          <td>认识钟表整点和半点；用沙漏感知5分钟有多长</td>
+          <td>知道"几点了"，理解"还有5分钟"的概念</td>
+        </tr>
+        <tr>
+          <td>逻辑思维</td>
+          <td>分类游戏（按颜色/形状/用途分）、找规律、简单排序</td>
+          <td>能按1-2个属性分类，能完成ABAB规律</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">✏️ 书写准备</div>
+    <table>
+      <thead><tr><th>月份</th><th>练习内容</th><th>要点</th></tr></thead>
+      <tbody>
+        <tr><td>1-2月</td><td>涂色、画线条（横线/竖线/斜线/波浪线）</td><td>不出框、线条流畅</td></tr>
+        <tr><td>3月</td><td>描红：圆圈、三角形、正方形</td><td>练习控笔能力</td></tr>
+        <tr><td>4月</td><td>描红：简单汉字（一、二、三、十、人、口）</td><td>正确握笔姿势！</td></tr>
+      </tbody>
+    </table>
+    <div class="tip-box">
+      <strong>握笔姿势是重中之重！</strong> 错误姿势一旦定型，小学要花十倍力气纠正。正确姿势：拇指食指捏住笔，中指托住，笔杆靠在虎口，笔尖朝前下方。
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🗣️ 表达与社交</div>
+    <ul class="checklist">
+      <li>每天睡前"今日回顾"：让孩子说说今天最开心/最不开心的事</li>
+      <li>练习自我介绍："我叫XXX，今年X岁，我喜欢XXX"</li>
+      <li>练习举手发言：在家模拟"老师提问→举手→站起来回答"</li>
+      <li>鼓励孩子自己买东西：去便利店跟收银员交流</li>
+      <li>约同龄孩子玩，练习分享、轮流、解决小冲突</li>
+      <li>练习"举手说：老师我要上厕所"——很多孩子不敢说而尿裤子</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 第三阶段 -->
+<div class="section">
+  <div class="section-title"><span class="emoji">③</span>第三阶段：模拟适应期（5月-8月）</div>
+
+  <div class="card">
+    <div class="card-title">🏫 课堂模拟 <span class="tag tag-green">暑假重点</span></div>
+    <div class="daily-schedule">
+      <div class="row"><div class="time">9:00-9:35</div><div class="activity">📝 "上课"时间：坐在桌前完成一项任务（画画/描红/拼图），35分钟不离开座位</div></div>
+      <div class="row"><div class="time">9:35-9:45</div><div class="activity">🍎 课间休息：上厕所、喝水、自由活动</div></div>
+      <div class="row"><div class="time">9:45-10:20</div><div class="activity">📚 第二节"课"：亲子阅读+提问讨论</div></div>
+      <div class="row"><div class="time">10:20-11:00</div><div class="activity">🏃 户外活动/运动</div></div>
+      <div class="row"><div class="time">14:30-15:00</div><div class="activity">🎨 自由创作/手工</div></div>
+      <div class="row"><div class="time">19:30-20:00</div><div class="activity">📖 亲子阅读（固定项目，雷打不动）</div></div>
+      <div class="row"><div class="time">20:00-20:15</div><div class="activity">🎒 整理书包：自己收拾明天的东西</div></div>
+    </div>
+    <div class="tip-box">
+      <strong>进阶玩法：</strong>7-8月开始，让孩子戴手表，自己记"上课时间"。家长当"老师"，喊"上课""起立""坐下"，孩子练习响应。每周2-3次，每次模拟2节课。
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">心理建设时间线</div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <h4>5月 · 认识小学</h4>
+        <p>带孩子路过附近小学，隔着栏杆看看哥哥姐姐上课、做操。聊聊"你以后也要来这里上学啦"。积极、期待、不焦虑的语气。</p>
+      </div>
+      <div class="timeline-item">
+        <h4>6月 · 买文具</h4>
+        <p>带孩子一起选购书包、文具盒、铅笔、橡皮。让孩子参与选择，建立"我是小学生了"的身份认同。文具越简单越好，花哨的容易分心。</p>
+      </div>
+      <div class="timeline-item">
+        <h4>7月 · 模拟体验</h4>
+        <p>开始课堂模拟。和孩子一起布置"学习角"——固定的桌椅、台灯、文具盒。让孩子有"我的学习空间"的感觉。</p>
+      </div>
+      <div class="timeline-item">
+        <h4>8月 · 倒计时</h4>
+        <p>做个"入学倒计时"日历，每天撕一页。带孩子参加学校开放日/分班通知。反复强调："遇到困难告诉老师""下课要先喝水上厕所""不知道答案没关系，举手就好"。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🎒 物品准备清单</div>
+    <ul class="checklist">
+      <li>书包（轻便、护脊、不要拉杆箱式的）</li>
+      <li>文具盒（简单布艺或铁盒，不要多功能玩具式的）</li>
+      <li>HB铅笔 × 5支（每天削好，不要自动铅笔）</li>
+      <li>橡皮 2块（普通白色绘图橡皮，不要造型橡皮）</li>
+      <li>直尺 1把（15-20cm，透明简单）</li>
+      <li>水壶（带盖、不漏水、能自己打开）</li>
+      <li>姓名贴 × 一大包（所有物品都贴上名字）</li>
+      <li>手帕/纸巾（随身带）</li>
+      <li>一双能自己穿脱的运动鞋</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 专题：环境迁移 -->
+<div class="section">
+  <div class="section-title"><span class="emoji">🔑</span>专题：从家庭环境到教室环境的迁移</div>
+
+  <div class="card" style="border-left:4px solid var(--accent);">
+    <div class="card-title">⚠️ 为什么要单独说这个 <span class="tag tag-orange">核心痛点</span></div>
+    <p style="font-size:14px;line-height:1.9;">
+      <strong>在家专注 ≠ 在校专注。</strong>这是整个衔接过程中最容易被忽略的盲区。<br><br>
+      家庭环境：安静、一对一、干扰可控、安全感强——孩子很容易"坐得住"。<br>
+      教室环境：40个同学=40个干扰源、一对多轮不到被关注、有竞争压力、有"答错了"的紧张感——同样的孩子可能完全坐不住。<br><br>
+      所以，<strong>在家练的专注力只是"体能"，到教室里能不能用出来是"实战"</strong>。光练体能不上场，第一次比赛照样手忙脚乱。这个专题就是帮你补上"从训练场到赛场"的过渡。
+    </p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🎯 第一步：抗干扰训练（1月-4月启动）<span class="tag tag-orange">逐步增加干扰</span></div>
+    <p style="font-size:14px;color:var(--text-light);margin-bottom:12px;">
+      第一阶段练的是"安静环境下的专注"。从1月起，反过来练——<strong>在有干扰的环境里也能专注</strong>。分三级推进：
+    </p>
+    <table>
+      <thead><tr><th>级别</th><th>环境设置</th><th>任务</th><th>目标</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>L1 轻度干扰</strong><br>1-2月</td>
+          <td>放着轻音乐/白噪音，家里正常走动</td>
+          <td>画画、拼图、描红（15-20分钟）</td>
+          <td>能完成，不抬头看</td>
+        </tr>
+        <tr>
+          <td><strong>L2 中度干扰</strong><br>3月</td>
+          <td>客厅有人聊天/看电视（音量中等），或去咖啡馆、图书馆</td>
+          <td>看书、做迷宫书、听故事后复述（20-25分钟）</td>
+          <td>偶尔分心但能自己拉回来</td>
+        </tr>
+        <tr>
+          <td><strong>L3 模拟干扰</strong><br>4月</td>
+          <td>家长故意制造"同学效应"：旁边放个玩具、有人走过、突然发出声音</td>
+          <td>坐在桌前完成一项指定任务（25-30分钟）</td>
+          <td>注意到干扰但不跟随、不中断</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="tip-box">
+      <strong>核心目的：</strong>让专注从"需要安静才能专注"升级为"有干扰也能专注"。这才是教室里真正需要的专注力。<br>
+      <strong>注意节奏：</strong>每次干扰训练后，要回到安静环境做一次"恢复训练"，让孩子体验到"专注成功"的正反馈，别一直让他处于困难模式。
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">👥 第二步：群体环境适应（贯穿1-8月）<span class="tag tag-orange">补最大缺口</span></div>
+    <p style="font-size:14px;color:var(--text-light);margin-bottom:12px;">
+      家庭永远是一对一，学校是一对四十。这个差距只能靠"创造群体场景"来补。按频率递增：
+    </p>
+    <table>
+      <thead><tr><th>时间</th><th>场景</th><th>训练重点</th><th>频率</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>1-3月</td>
+          <td>约2-3个同龄孩子来家里，一起完成一个任务（拼图/画画/听故事）</td>
+          <td>能不能不跟着别人起哄？能不能自己做完不被带跑？</td>
+          <td>每周1次</td>
+        </tr>
+        <tr>
+          <td>1-8月</td>
+          <td>报一个<strong>有课堂感的兴趣班</strong>（围棋/画画/乐高/体育）<br><span style="font-size:13px;color:var(--text-light);">关键：一群孩子+一个老师+坐在座位上听指令。不是一对一。</span></td>
+          <td>体验"老师关注别人时我也能做好自己的事"</td>
+          <td>每周1-2次</td>
+        </tr>
+        <tr>
+          <td>3-6月</td>
+          <td>参加集体活动：绘本馆故事会、亲子活动日、社区活动</td>
+          <td>在陌生群体中举手、发言、遵守规则</td>
+          <td>每月2-3次</td>
+        </tr>
+        <tr>
+          <td>5-7月</td>
+          <td>小学开放日 / 幼小衔接体验课（哪怕就去一次）</td>
+          <td>真实教室、真实老师、真实同学——最接近实战的体验</td>
+          <td>有机会就去</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="warn-box">
+      <h4>⚠️ 关于兴趣班的选择</h4>
+      <ul>
+        <li><strong>选班目的不是学东西，是练"群体专注力"</strong>——所以选孩子喜欢的、没有压力的</li>
+        <li><strong>选"一对多"的班，不选一对一</strong>——一对一和家里没区别</li>
+        <li><strong>选有"坐+听+做"环节的</strong>——纯运动课效果有限，需要有坐下来听指令的环节</li>
+        <li><strong>观察重点</strong>：上课时孩子是不是容易被旁边同学带跑？老师讲别人时孩子能不能自己做？——这才是真正的"教室专注力"指标</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⏳ 第三步："等待中的专注"训练（2月起加入）<span class="tag tag-orange">最容易被忽略</span></div>
+    <p style="font-size:14px;color:var(--text-light);margin-bottom:12px;">
+      学校里最大的挑战不是专注本身，而是<strong>"等待中的专注"</strong>——老师照顾别的孩子时、排队时、等发卷子时，你能不能自己待着不分心、不捣乱。这比"上课听讲"更难，因为没人管你。
+    </p>
+    <table>
+      <thead><tr><th>训练场景</th><th>怎么做</th><th>训练什么</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>延迟满足</td>
+          <td>"等5分钟再吃这颗糖"，等待期间让孩子自己找事做</td>
+          <td>等待时不焦虑、能自我安排</td>
+        </tr>
+        <tr>
+          <td>排队等待</td>
+          <td>超市排队、游乐场排队时，练习安静等待不催促</td>
+          <td>身体安静、嘴巴安静、眼睛观察</td>
+        </tr>
+        <tr>
+          <td>轮流活动</td>
+          <td>和家人玩游戏轮流来，轮到别人时"看+等+准备好"</td>
+          <td>轮到我之前保持专注和准备状态</td>
+        </tr>
+        <tr>
+          <td>无关注自处</td>
+          <td>家长在旁边做自己的事（做饭/看手机），孩子独立完成任务，<strong>不喊"妈妈你看"</strong></td>
+          <td>没人关注时也能独立完成——这是教室里最常见的状态</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="tip-box">
+      <strong>这个能力为什么关键？</strong>小学一节课40分钟，老师平均关注到每个孩子的时间可能不到1分钟。其余39分钟，孩子都在"自处"。能不能在没人管的时候依然坐得住、做自己的事，决定了头两个月的适应速度。
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📊 专注力迁移进度对照表</div>
+    <p style="font-size:14px;color:var(--text-light);margin-bottom:12px;">
+      用这张表判断孩子"教室专注力"的 readiness，每两个月评估一次：
+    </p>
+    <table>
+      <thead><tr><th>评估维度</th><th>❌ 还没准备好</th><th>⚠️ 基本可以</th><th>✅ 准备好了</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>安静环境专注</td>
+          <td>&lt;15分钟</td>
+          <td>15-25分钟</td>
+          <td>≥30分钟</td>
+        </tr>
+        <tr>
+          <td>有干扰时专注</td>
+          <td>一有声音就抬头</td>
+          <td>分心但能自己回来</td>
+          <td>基本不受影响</td>
+        </tr>
+        <tr>
+          <td>群体中专注</td>
+          <td>跟着别人跑/起哄</td>
+          <td>偶尔被带跑</td>
+          <td>自己做自己的</td>
+        </tr>
+        <tr>
+          <td>无关注时自处</td>
+          <td>5分钟就喊"妈妈"</td>
+          <td>10-15分钟</td>
+          <td>20分钟+独立完成</td>
+        </tr>
+        <tr>
+          <td>等待时表现</td>
+          <td>催促、焦躁、插嘴</td>
+          <td>偶尔催促</td>
+          <td>安静等待</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="tip-box">
+      <strong>评估结果怎么用：</strong>如果5项里有3项以上"✅ 准备好了"，说明环境迁移基本完成，入学适应会很快。如果大部分还在"❌"，不要焦虑，重点是<strong>多创造群体场景</strong>而不是加长在家训练时间——在家练再多，迁移不过去也没用。
+    </div>
+  </div>
+
+  <div class="card" style="border-left:4px solid var(--red);">
+    <div class="card-title">💬 说句实话 <span class="tag" style="background:#FFF1F0;color:var(--red);">降低预期</span></div>
+    <p style="font-size:14px;line-height:1.9;">
+      家庭环境<strong>无法100%解决</strong>教室专注力的问题。每个孩子上小学头两个月都有一个适应期，区别只是长短——有的孩子两周就适应了，有的需要一学期。<br><br>
+      头两个月出现反复是<strong>正常</strong>的：第一周坐得好好的，第二周突然坐不住了——不是退步，是"新鲜感过了，真实状态出来了"。<br><br>
+      真正决定适应快慢的，不是提前练了多少专注力，而是<strong>孩子遇到困难时的心理弹性</strong>——"今天没坐好，没关系，明天再试"。这个心态，比专注力本身更重要。所以，<strong>别把全部精力放在"练专注"上，留一半精力放在"练心态"上</strong>。
+    </p>
+  </div>
+</div>
+
+<!-- 每周检查 -->
+<div class="section">
+  <div class="section-title"><span class="emoji">✅</span>家长每周自检表</div>
+  <div class="card">
+    <p style="font-size:14px;color:var(--text-light);margin-bottom:12px;">每周日晚上花5分钟对照检查，做到的打✓，没做到的下周调整。</p>
+    <table>
+      <thead><tr><th>检查项</th><th>本周做到了吗</th></tr></thead>
+      <tbody>
+        <tr><td>每天亲子阅读20分钟，坚持了至少5天</td><td>☐</td></tr>
+        <tr><td>孩子每天21:00前上床</td><td>☐</td></tr>
+        <tr><td>孩子自己穿衣、吃饭、收拾书包（至少尝试）</td><td>☐</td></tr>
+        <tr><td>有一次专注力训练活动（≥20分钟不被打断）</td><td>☐</td></tr>
+        <tr><td>有一次"有干扰环境下"的专注训练（1月后加入）</td><td>☐</td></tr>
+        <tr><td>本周有一次群体活动/兴趣班/同伴游戏</td><td>☐</td></tr>
+        <tr><td>练了一次"等待中的专注"（排队/轮流/无关注自处）</td><td>☐</td></tr>
+        <tr><td>有一次数学/识字融入生活的游戏</td><td>☐</td></tr>
+        <tr><td>睡前和孩子聊了"今天的事"</td><td>☐</td></tr>
+        <tr><td>我没有对孩子发过"你怎么连这个都不会"的火</td><td>☐</td></tr>
+        <tr><td>我夸了孩子至少3次具体的进步（不是"你真棒"）</td><td>☐</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- 核心原则 -->
+<div class="section">
+  <div class="section-title"><span class="emoji">💡</span>核心原则（打印贴墙上）</div>
+  <div class="card">
+    <div class="warn-box">
+      <h4>🚫 五个"绝对不要"</h4>
+      <ul>
+        <li><strong>不要提前学一年级课本</strong>——上课走神的根源</li>
+        <li><strong>不要用物质奖励学习</strong>——"考100分给你买XX"会毁掉内驱力</li>
+        <li><strong>不要在孩子面前焦虑</strong>——你的焦虑会传染，而且加倍</li>
+        <li><strong>不要和别的孩子比</strong>——"你看XX都会了"是毒性话语</li>
+        <li><strong>不要包办代替</strong>——宁可慢、宁可错，也要让孩子自己做</li>
+      </ul>
+    </div>
+    <div class="tip-box">
+      <strong>五个"永远记得"：</strong>
+      <ul style="margin-top:8px;padding-left:20px;">
+        <li>习惯 &gt; 知识（坐得住比认字多重要100倍）</li>
+        <li>兴趣 &gt; 进度（保护好好奇心是一切的基础）</li>
+        <li>鼓励 &gt; 批评（夸具体行为："你今天自己收拾了书包，很棒"）</li>
+        <li>过程 &gt; 结果（"你努力了"比"你真聪明"有用）</li>
+        <li>陪伴 &gt; 教学（你在旁边看书，比你在旁边教字更有用）</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="summary">
+  <h3>一句话记住整个方案</h3>
+  <p style="font-size:16px;margin-top:8px;">"抓习惯、保兴趣、缓知识、重心理、迁环境" —— 在家打好底子，到群体中验证，给足适应的时间。</p>
+</div>
+
+</div>
+</body>
+</html>

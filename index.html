@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>幼小衔接 · 每日学习记录</title>
+<style>
+:root {
+  --primary: #4A90D9;
+  --primary-light: #E8F2FC;
+  --accent: #F5A623;
+  --accent-light: #FEF5E7;
+  --green: #52C41A;
+  --green-light: #F0FBEB;
+  --red: #FF4D4F;
+  --purple: #9B59B6;
+  --purple-light: #F3E8FF;
+  --pink: #FF6B81;
+  --pink-light: #FFF0F2;
+  --text: #1a1a2e;
+  --text-light: #6B7280;
+  --bg: #F0F2F5;
+  --card: #FFFFFF;
+  --border: #E5E7EB;
+  --sidebar-w: 240px;
+  --radius: 12px;
+  --shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+}
+
+/* Sidebar */
+.sidebar {
+  width: var(--sidebar-w);
+  background: #1a1a2e;
+  color: #fff;
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  overflow-y: auto;
+  z-index: 100;
+  transition: transform 0.3s;
+}
+.sidebar-header {
+  padding: 24px 20px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.sidebar-header h1 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.sidebar-header p {
+  font-size: 12px;
+  opacity: 0.6;
+}
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-size: 14px;
+  border-left: 3px solid transparent;
+}
+.nav-item:hover { background: rgba(255,255,255,0.08); }
+.nav-item.active {
+  background: rgba(255,255,255,0.12);
+  border-left-color: var(--primary);
+}
+.nav-item .emoji { font-size: 18px; }
+.nav-item .count {
+  margin-left: auto;
+  background: rgba(255,255,255,0.15);
+  border-radius: 10px;
+  padding: 1px 8px;
+  font-size: 11px;
+}
+.nav-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.08);
+  margin: 4px 16px;
+}
+.nav-section-title {
+  padding: 16px 20px 8px;
+  font-size: 11px;
+  text-transform: uppercase;
+  opacity: 0.4;
+  letter-spacing: 1px;
+}
+
+/* Main */
+.main {
+  margin-left: var(--sidebar-w);
+  flex: 1;
+  min-height: 100vh;
+}
+
+/* Top bar */
+.topbar {
+  background: var(--card);
+  padding: 16px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+.topbar-left { display:flex; align-items:center; gap:12px; }
+.topbar-left h2 { font-size:20px; font-weight:700; }
+.topbar-date {
+  background: var(--primary-light);
+  color: var(--primary);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.topbar-right { display:flex; gap:8px; }
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:hover { background: #357ABD; }
+.btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
+.btn-outline:hover { background: var(--bg); }
+.btn-green { background: var(--green); color: #fff; }
+.btn-green:hover { background: #45a818; }
+.btn-sm { padding: 4px 10px; font-size: 12px; }
+
+/* Content */
+.content {
+  padding: 24px 32px;
+  max-width: 1100px;
+}
+
+/* Stats Row */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.stat-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+.stat-card .label { font-size: 13px; color: var(--text-light); margin-bottom: 4px; }
+.stat-card .value { font-size: 28px; font-weight: 800; }
+.stat-card .sub { font-size: 12px; color: var(--text-light); margin-top: 4px; }
+
+/* Page sections */
+.page { display: none; }
+.page.active { display: block; }
+
+/* Project cards */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
+}
+.project-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border-top: 3px solid var(--primary);
+}
+.project-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.12); }
+.project-card .header { display:flex; align-items:center; gap:10px; margin-bottom:12px; }
+.project-card .header .icon { font-size:28px; }
+.project-card .header .name { font-size:16px; font-weight:700; }
+.project-card .desc { font-size:13px; color:var(--text-light); margin-bottom:12px; }
+.project-card .progress-bar {
+  height: 6px;
+  background: var(--bg);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+.project-card .progress-bar .fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.3s;
+}
+.project-card .progress-text { font-size:12px; color:var(--text-light); }
+
+/* Phase list */
+.phase-section { margin-bottom: 24px; }
+.phase-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.item-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  background: var(--card);
+  border-radius: 8px;
+  margin-bottom: 6px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.item-row .checkbox {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  border: 2px solid var(--border);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+.item-row .checkbox.checked {
+  background: var(--green);
+  border-color: var(--green);
+  color: #fff;
+}
+.item-row .checkbox.checked::after { content: "✓"; font-size: 13px; }
+.item-row .item-text { font-size: 14px; flex:1; }
+.item-row .item-text.done { text-decoration: line-through; color: var(--text-light); }
+.item-row .item-date { font-size: 11px; color: var(--text-light); }
+
+/* Calendar */
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.calendar-header h3 { font-size: 18px; }
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+.calendar-weekday {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-light);
+  padding: 8px 0;
+  font-weight: 600;
+}
+.calendar-day {
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s;
+  position: relative;
+}
+.calendar-day:hover { background: var(--bg); }
+.calendar-day.today { background: var(--primary); color: #fff; font-weight: 700; }
+.calendar-day.has-record::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  position: absolute;
+  bottom: 4px;
+}
+.calendar-day.other-month { color: var(--text-light); opacity: 0.4; }
+
+/* Daily record */
+.record-section { margin-bottom: 24px; }
+.record-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  margin-bottom: 16px;
+}
+.record-card h4 { font-size:15px; font-weight:700; margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+.note-input {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 60px;
+}
+.note-input:focus { outline: none; border-color: var(--primary); }
+
+/* Weekly checklist */
+.checklist-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+.checklist-row:last-child { border-bottom: none; }
+.checklist-row .cl-check {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+.checklist-row .cl-check.checked {
+  background: var(--green);
+  border-color: var(--green);
+}
+.checklist-row .cl-check.checked::after { content: "✓"; color: #fff; font-size: 12px; }
+.checklist-row .cl-text { font-size: 14px; flex:1; }
+.checklist-row .cl-text.done { text-decoration: line-through; color: var(--text-light); }
+
+/* History */
+.history-item {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin-bottom: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.history-date {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--primary);
+  min-width: 90px;
+}
+.history-summary { font-size: 14px; flex:1; }
+.history-detail { font-size: 12px; color: var(--text-light); }
+
+/* Focus assessment */
+.assess-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+.assess-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+.assess-card h4 { font-size:14px; font-weight:700; margin-bottom:12px; }
+.assess-option {
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s;
+}
+.assess-option:hover { border-color: var(--primary); }
+.assess-option.selected-green { background: var(--green-light); border-color: var(--green); }
+.assess-option.selected-orange { background: var(--accent-light); border-color: var(--accent); }
+.assess-option.selected-red { background: #FFF1F0; border-color: var(--red); }
+
+/* Mobile */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 4px;
+}
+@media (max-width: 768px) {
+  .sidebar { transform: translateX(-100%); }
+  .sidebar.open { transform: translateX(0); }
+  .main { margin-left: 0; }
+  .menu-toggle { display: block; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+  .content { padding: 16px; }
+  .project-grid { grid-template-columns: 1fr; }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.page.active { animation: fadeIn 0.3s ease; }
+</style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <h1>🧒 幼小衔接</h1>
+    <p>每日学习记录</p>
+  </div>
+  <div class="nav-section-title">主要功能</div>
+  <div class="nav-item active" data-page="dashboard" onclick="switchPage('dashboard')">
+    <span class="emoji">📊</span> 今日概览
+  </div>
+  <div class="nav-item" data-page="projects" onclick="switchPage('projects')">
+    <span class="emoji">📁</span> 项目管理
+  </div>
+  <div class="nav-item" data-page="calendar" onclick="switchPage('calendar')">
+    <span class="emoji">📅</span> 日历视图
+  </div>
+  <div class="nav-item" data-page="checklist" onclick="switchPage('checklist')">
+    <span class="emoji">✅</span> 周检表
+  </div>
+  <div class="nav-divider"></div>
+  <div class="nav-section-title">评估工具</div>
+  <div class="nav-item" data-page="assess" onclick="switchPage('assess')">
+    <span class="emoji">🎯</span> 专注力评估
+  </div>
+  <div class="nav-item" data-page="history" onclick="switchPage('history')">
+    <span class="emoji">📋</span> 历史记录
+  </div>
+  <div class="nav-divider"></div>
+  <div class="nav-section-title">项目列表</div>
+  <div id="sidebar-projects"></div>
+</nav>
+
+<!-- Main -->
+<div class="main">
+  <!-- Top bar -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+      <h2 id="page-title">今日概览</h2>
+      <span class="topbar-date" id="today-date"></span>
+    </div>
+    <div class="topbar-right">
+      <button class="btn btn-outline btn-sm" onclick="exportData()">📤 导出</button>
+      <button class="btn btn-primary btn-sm" onclick="importDataPrompt()">📥 导入</button>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- Dashboard -->
+    <div class="page active" id="page-dashboard">
+      <div class="stats-row" id="stats-row"></div>
+      <div class="record-section">
+        <div class="record-card">
+          <h4>📝 今日学习记录</h4>
+          <div id="daily-items"></div>
+          <div style="margin-top:16px">
+            <textarea class="note-input" id="daily-note" placeholder="记录今天的观察、进步、或者需要调整的地方..."></textarea>
+            <div style="margin-top:8px;text-align:right">
+              <button class="btn btn-primary btn-sm" onclick="saveDailyNote()">保存笔记</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Projects -->
+    <div class="page" id="page-projects">
+      <div class="project-grid" id="project-grid"></div>
+    </div>
+
+    <!-- Project Detail -->
+    <div class="page" id="page-project-detail">
+      <button class="btn btn-outline btn-sm" onclick="switchPage('projects')" style="margin-bottom:16px">← 返回项目列表</button>
+      <div id="project-detail-content"></div>
+    </div>
+
+    <!-- Calendar -->
+    <div class="page" id="page-calendar">
+      <div class="calendar-header">
+        <button class="btn btn-outline btn-sm" onclick="changeMonth(-1)">◀</button>
+        <h3 id="calendar-title"></h3>
+        <button class="btn btn-outline btn-sm" onclick="changeMonth(1)">▶</button>
+      </div>
+      <div class="calendar-grid" id="calendar-grid"></div>
+      <div id="calendar-day-detail" style="margin-top:20px"></div>
+    </div>
+
+    <!-- Checklist -->
+    <div class="page" id="page-checklist">
+      <div class="record-card">
+        <h4>✅ 本周检查表</h4>
+        <p style="font-size:13px;color:var(--text-light);margin-bottom:12px">每周日晚上花5分钟对照检查</p>
+        <div id="weekly-checklist"></div>
+      </div>
+    </div>
+
+    <!-- Assessment -->
+    <div class="page" id="page-assess">
+      <div class="record-card" style="margin-bottom:16px">
+        <h4>🎯 专注力迁移评估</h4>
+        <p style="font-size:13px;color:var(--text-light)">每两个月评估一次，判断孩子"教室专注力"的准备程度</p>
+      </div>
+      <div class="assess-grid" id="assess-grid"></div>
+      <div style="margin-top:16px;text-align:center">
+        <button class="btn btn-green" onclick="saveAssessment()">保存评估结果</button>
+      </div>
+    </div>
+
+    <!-- History -->
+    <div class="page" id="page-history">
+      <div id="history-list"></div>
+    </div>
+
+  </div>
+</div>
+
+<input type="file" id="import-input" accept=".json" style="display:none" onchange="importData(event)">
+
+<script>
+// ===== Data Store =====
+const STORAGE_KEY = 'kids-learning-data';
+const PROJECTS_DATA = {
+  projects: [
+    {id:"habit",name:"习惯养成",icon:"🎯",color:"#4A90D9",description:"作息规律、专注力、自理能力",
+      phases:[
+        {id:"habit-sleep",name:"作息规律",items:["7:00起床自己穿衣","7:30早餐15-20分钟吃完","21:00前上床","午睡逐步缩短"]},
+        {id:"habit-focus",name:"专注力训练",items:["安静环境专注15-30分钟","有干扰时能自己拉回来","群体中能自己做自己的","无关注时能独立完成"]},
+        {id:"habit-selfcare",name:"自理能力",items:["自己穿脱衣服","自己吃饭不追喂","自己上厕所","自己收拾玩具/书包","清楚表达需求"]}
+      ]},
+    {id:"reading",name:"阅读与识字",icon:"📖",color:"#F5A623",description:"亲子阅读、生活识字、拼音启蒙",
+      phases:[
+        {id:"reading-daily",name:"亲子阅读",items:["每天20分钟亲子阅读","指读练习","孩子复述故事"]},
+        {id:"reading-words",name:"识字",items:["路牌/标签/包装认字","认识200-300字","不用字卡机械记忆"]},
+        {id:"reading-pinyin",name:"拼音启蒙",items:["听拼音儿歌","拼音卡片游戏","有初步印象即可"]}
+      ]},
+    {id:"math",name:"数学与逻辑",icon:"🔢",color:"#52C41A",description:"数感、运算启蒙、空间方位、时间认知",
+      phases:[
+        {id:"math-count",name:"数感",items:["数1-100","理解多几个少几个","数楼梯/水果/筷子"]},
+        {id:"math-calc",name:"运算启蒙",items:["10以内分合（分糖果）","理解加减概念","不用会写算式"]},
+        {id:"math-space",name:"空间与方位",items:["分清左右","理解上下前后","听懂方位指令"]},
+        {id:"math-time",name:"时间认知",items:["认识钟表整点半点","理解5分钟概念","用沙漏感知时间"]},
+        {id:"math-logic",name:"逻辑思维",items:["按属性分类","找规律ABAB","简单排序"]}
+      ]},
+    {id:"writing",name:"书写准备",icon:"✏️",color:"#9B59B6",description:"控笔训练、描红、握笔姿势",
+      phases:[
+        {id:"writing-lines",name:"线条练习",items:["涂色不出框","画横线竖线斜线波浪线"]},
+        {id:"writing-shape",name:"形状描红",items:["描红圆圈","描红三角形","描红正方形"]},
+        {id:"writing-chars",name:"汉字描红",items:["描红一二三","描红十人","描红口","正确握笔姿势"]}
+      ]},
+    {id:"social",name:"表达与社交",icon:"🗣️",color:"#E74C3C",description:"自我表达、社交能力、抗干扰",
+      phases:[
+        {id:"social-express",name:"自我表达",items:["睡前今日回顾","自我介绍练习","举手发言模拟"]},
+        {id:"social-interact",name:"社交能力",items:["自己买东西","约同伴一起完成任务","练习分享和轮流"]},
+        {id:"social-distraction",name:"抗干扰训练",items:["轻度干扰环境专注","中度干扰环境专注","模拟同学效应"]},
+        {id:"social-wait",name:"等待专注",items:["延迟满足练习","排队等待练习","轮流活动","无关注自处"]}
+      ]},
+    {id:"psychology",name:"心理建设",icon:"💖",color:"#FF6B81",description:"期待小学、抗挫力、入学准备",
+      phases:[
+        {id:"psy-lookforward",name:"期待小学",items:["路过小学看看","聊聊上小学的好事","不用负面话语吓孩子"]},
+        {id:"psy-resilience",name:"抗挫力",items:["允许犯错","做不好不批评","重点再试一次"]},
+        {id:"psy-prepare",name:"入学准备",items:["一起选购文具","布置学习角","入学倒计时日历","反复强调有困难找老师"]}
+      ]}
+  ]
+};
+
+const WEEKLY_CHECKLIST = [
+  {id:"w1",text:"每天亲子阅读20分钟，坚持了至少5天",category:"reading"},
+  {id:"w2",text:"孩子每天21:00前上床",category:"habit"},
+  {id:"w3",text:"孩子自己穿衣、吃饭、收拾书包",category:"habit"},
+  {id:"w4",text:"有一次专注力训练活动（≥20分钟）",category:"habit"},
+  {id:"w5",text:"有一次有干扰环境下的专注训练",category:"social"},
+  {id:"w6",text:"本周有一次群体活动/兴趣班/同伴游戏",category:"social"},
+  {id:"w7",text:"练了一次等待中的专注",category:"social"},
+  {id:"w8",text:"有一次数学/识字融入生活的游戏",category:"math"},
+  {id:"w9",text:"睡前和孩子聊了今天的事",category:"psychology"},
+  {id:"w10",text:"没有对孩子发过你怎么连这个都不会的火",category:"psychology"},
+  {id:"w11",text:"夸了孩子至少3次具体的进步",category:"psychology"}
+];
+
+const ASSESS_DIMS = [
+  {id:"a1",name:"安静环境专注",red:"<15分钟",orange:"15-25分钟",green:"≥30分钟"},
+  {id:"a2",name:"有干扰时专注",red:"一有声音就抬头",orange:"分心但能自己回来",green:"基本不受影响"},
+  {id:"a3",name:"群体中专注",red:"跟着别人跑/起哄",orange:"偶尔被带跑",green:"自己做自己的"},
+  {id:"a4",name:"无关注时自处",red:"5分钟就喊妈妈",orange:"10-15分钟",green:"20分钟+独立完成"},
+  {id:"a5",name:"等待时表现",red:"催促、焦躁、插嘴",orange:"偶尔催促",green:"安静等待"}
+];
+
+// ===== State =====
+let state = loadData();
+let currentMonth = new Date();
+
+function defaultState() {
+  return {
+    records: {},        // { "2026-07-07": { items: {key: true}, note: "" } }
+    weeklyChecks: {},   // { "2026-W28": { w1: true, ... } }
+    assessments: [],    // [{date, results: {a1:"green",...}}]
+    dailyNotes: {}      // { "2026-07-07": "note text" }
+  };
+}
+
+function loadData() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : defaultState();
+  } catch(e) { return defaultState(); }
+}
+
+function saveData() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+
+function today() {
+  return new Date().toISOString().split('T')[0];
+}
+
+function getWeekKey(date) {
+  const d = new Date(date);
+  const start = new Date(d.getFullYear(), 0, 1);
+  const diff = d - start;
+  const oneDay = 86400000;
+  const dayOfYear = Math.floor(diff / oneDay) + 1;
+  const weekNum = Math.ceil(dayOfYear / 7);
+  return `${d.getFullYear()}-W${String(weekNum).padStart(2,'0')}`;
+}
+
+// ===== Navigation =====
+function switchPage(pageId) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + pageId).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  const navItem = document.querySelector(`.nav-item[data-page="${pageId}"]`);
+  if(navItem) navItem.classList.add('active');
+
+  const titles = {
+    dashboard:'今日概览', projects:'项目管理', calendar:'日历视图',
+    checklist:'周检表', assess:'专注力评估', history:'历史记录', 'project-detail':'项目详情'
+  };
+  document.getElementById('page-title').textContent = titles[pageId] || '';
+
+  // Close mobile sidebar
+  document.getElementById('sidebar').classList.remove('open');
+
+  // Render page
+  if(pageId === 'dashboard') renderDashboard();
+  if(pageId === 'projects') renderProjects();
+  if(pageId === 'calendar') renderCalendar();
+  if(pageId === 'checklist') renderChecklist();
+  if(pageId === 'assess') renderAssess();
+  if(pageId === 'history') renderHistory();
+}
+
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+}
+
+// ===== Dashboard =====
+function renderDashboard() {
+  const d = today();
+  const record = state.records[d] || {};
+  const items = record.items || {};
+  const doneCount = Object.values(items).filter(v=>v).length;
+  const totalItems = getAllItems().length;
+  const streakDays = calcStreak();
+  const weekCheckDone = getWeeklyCheckCount();
+
+  document.getElementById('today-date').textContent = formatDateCN(d);
+
+  document.getElementById('stats-row').innerHTML = `
+    <div class="stat-card">
+      <div class="label">今日完成</div>
+      <div class="value" style="color:var(--green)">${doneCount}</div>
+      <div class="sub">共${totalItems}项任务</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">总体进度</div>
+      <div class="value" style="color:var(--primary)">${Math.round(getOverallProgress())}%</div>
+      <div class="sub">所有项目综合</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">连续记录</div>
+      <div class="value" style="color:var(--accent)">${streakDays}</div>
+      <div class="sub">天</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">本周检查</div>
+      <div class="value" style="color:var(--purple)">${weekCheckDone}/${WEEKLY_CHECKLIST.length}</div>
+      <div class="sub">项已完成</div>
+    </div>
+  `;
+
+  // Daily items from today's quick picks
+  let html = '';
+  PROJECTS_DATA.projects.forEach(proj => {
+    const phaseItems = [];
+    proj.phases.forEach(ph => {
+      ph.items.forEach((item, i) => {
+        const key = `${ph.id}-${i}`;
+        const checked = items[key] ? 'checked' : '';
+        const done = items[key] ? 'done' : '';
+        phaseItems.push(`
+          <div class="item-row">
+            <div class="checkbox ${checked}" onclick="toggleItem('${key}')"></div>
+            <span class="item-text ${done}">${item}</span>
+          </div>
+        `);
+      });
+    });
+    html += `
+      <div style="margin-bottom:8px;font-weight:700;font-size:14px;display:flex;align-items:center;gap:6px;margin-top:12px">
+        <span style="font-size:18px">${proj.icon}</span> ${proj.name}
+      </div>
+      ${phaseItems.join('')}
+    `;
+  });
+  document.getElementById('daily-items').innerHTML = html;
+
+  // Note
+  document.getElementById('daily-note').value = state.dailyNotes[d] || '';
+}
+
+function getAllItems() {
+  const items = [];
+  PROJECTS_DATA.projects.forEach(p => p.phases.forEach(ph => ph.items.forEach((_,i) => items.push(`${ph.id}-${i}`))));
+  return items;
+}
+
+function getOverallProgress() {
+  const allRecords = Object.values(state.records);
+  if(allRecords.length === 0) return 0;
+  let totalDone = 0, totalPossible = 0;
+  const allItems = getAllItems();
+  allRecords.forEach(r => {
+    const items = r.items || {};
+    totalPossible += allItems.length;
+    totalDone += Object.values(items).filter(v=>v).length;
+  });
+  return totalPossible > 0 ? (totalDone / totalPossible * 100) : 0;
+}
+
+function toggleItem(key) {
+  const d = today();
+  if(!state.records[d]) state.records[d] = {items:{}, note:''};
+  state.records[d].items[key] = !state.records[d].items[key];
+  saveData();
+  renderDashboard();
+}
+
+function saveDailyNote() {
+  const d = today();
+  state.dailyNotes[d] = document.getElementById('daily-note').value;
+  saveData();
+  alert('笔记已保存！');
+}
+
+function calcStreak() {
+  let streak = 0;
+  let d = new Date();
+  while(true) {
+    const key = d.toISOString().split('T')[0];
+    if(state.records[key] && Object.values(state.records[key].items || {}).some(v=>v)) {
+      streak++;
+      d.setDate(d.getDate() - 1);
+    } else break;
+  }
+  return streak;
+}
+
+function getWeeklyCheckCount() {
+  const wk = getWeekKey(today());
+  const checks = state.weeklyChecks[wk] || {};
+  return Object.values(checks).filter(v=>v).length;
+}
+
+function formatDateCN(dateStr) {
+  const d = new Date(dateStr);
+  return `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`;
+}
+
+// ===== Projects =====
+function renderProjects() {
+  const grid = document.getElementById('project-grid');
+  grid.innerHTML = PROJECTS_DATA.projects.map(proj => {
+    const total = proj.phases.reduce((s,p)=>s+p.items.length, 0);
+    // Count unique items done across all records
+    const allKeys = [];
+    proj.phases.forEach(ph => ph.items.forEach((_,i) => allKeys.push(`${ph.id}-${i}`)));
+    let done = 0;
+    Object.values(state.records).forEach(r => {
+      allKeys.forEach(k => { if(r.items && r.items[k]) done++; });
+    });
+    // Simpler: count how many items have been checked at least once
+    const everDone = new Set();
+    Object.values(state.records).forEach(r => {
+      if(r.items) Object.keys(r.items).forEach(k => { if(r.items[k] && allKeys.includes(k)) everDone.add(k); });
+    });
+    const pct = total > 0 ? Math.round(everDone.size / total * 100) : 0;
+
+    return `
+      <div class="project-card" style="border-top-color:${proj.color}" onclick="openProject('${proj.id}')">
+        <div class="header">
+          <span class="icon">${proj.icon}</span>
+          <span class="name">${proj.name}</span>
+        </div>
+        <div class="desc">${proj.description}</div>
+        <div class="progress-bar">
+          <div class="fill" style="width:${pct}%;background:${proj.color}"></div>
+        </div>
+        <div class="progress-text">${everDone.size}/${total} 项已练习 (${pct}%)</div>
+      </div>
+    `;
+  }).join('');
+}
+
+function openProject(projId) {
+  const proj = PROJECTS_DATA.projects.find(p=>p.id===projId);
+  if(!proj) return;
+
+  document.getElementById('page-title').textContent = proj.icon + ' ' + proj.name;
+  let html = `<p style="color:var(--text-light);margin-bottom:20px">${proj.description}</p>`;
+
+  proj.phases.forEach(ph => {
+    html += `<div class="phase-section"><div class="phase-title"><span style="color:${proj.color}">●</span> ${ph.name}</div>`;
+    ph.items.forEach((item, i) => {
+      const key = `${ph.id}-${i}`;
+      const d = today();
+      if(!state.records[d]) state.records[d] = {items:{}, note:''};
+      const checked = state.records[d].items[key] ? 'checked' : '';
+      const done = state.records[d].items[key] ? 'done' : '';
+      html += `
+        <div class="item-row">
+          <div class="checkbox ${checked}" onclick="toggleItemInProject('${key}','${projId}')"></div>
+          <span class="item-text ${done}">${item}</span>
+        </div>
+      `;
+    });
+    html += '</div>';
+  });
+
+  document.getElementById('project-detail-content').innerHTML = html;
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-project-detail').classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+}
+
+function toggleItemInProject(key, projId) {
+  const d = today();
+  if(!state.records[d]) state.records[d] = {items:{}, note:''};
+  state.records[d].items[key] = !state.records[d].items[key];
+  saveData();
+  openProject(projId);
+}
+
+// ===== Calendar =====
+function renderCalendar() {
+  const year = currentMonth.getFullYear();
+  const month = currentMonth.getMonth();
+  document.getElementById('calendar-title').textContent = `${year}年${month+1}月`;
+
+  const firstDay = new Date(year, month, 1).getDay();
+  const daysInMonth = new Date(year, month+1, 0).getDate();
+  const daysInPrev = new Date(year, month, 0).getDate();
+  const todayStr = today();
+
+  const weekdays = ['日','一','二','三','四','五','六'];
+  let html = weekdays.map(w => `<div class="calendar-weekday">${w}</div>`).join('');
+
+  // Previous month
+  for(let i = firstDay - 1; i >= 0; i--) {
+    html += `<div class="calendar-day other-month">${daysInPrev - i}</div>`;
+  }
+
+  // Current month
+  for(let d = 1; d <= daysInMonth; d++) {
+    const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const isToday = dateStr === todayStr;
+    const hasRecord = state.records[dateStr] && Object.values(state.records[dateStr].items || {}).some(v=>v);
+    html += `<div class="calendar-day${isToday?' today':''}${hasRecord?' has-record':''}" onclick="showDayDetail('${dateStr}')">${d}</div>`;
+  }
+
+  // Next month
+  const totalCells = firstDay + daysInMonth;
+  const remaining = totalCells % 7 === 0 ? 0 : 7 - (totalCells % 7);
+  for(let i = 1; i <= remaining; i++) {
+    html += `<div class="calendar-day other-month">${i}</div>`;
+  }
+
+  document.getElementById('calendar-grid').innerHTML = html;
+  document.getElementById('calendar-day-detail').innerHTML = '';
+}
+
+function changeMonth(delta) {
+  currentMonth.setMonth(currentMonth.getMonth() + delta);
+  renderCalendar();
+}
+
+function showDayDetail(dateStr) {
+  const record = state.records[dateStr];
+  const note = state.dailyNotes[dateStr] || '';
+  let html = `<div class="record-card"><h4>📋 ${formatDateCN(dateStr)}</h4>`;
+
+  if(record && record.items) {
+    const doneItems = Object.entries(record.items).filter(([k,v])=>v);
+    if(doneItems.length > 0) {
+      html += `<p style="font-size:14px;margin-bottom:8px">完成 ${doneItems.length} 项：</p><ul style="padding-left:20px;font-size:13px">`;
+      doneItems.forEach(([key]) => {
+        const [phaseId, idx] = [key.replace(/-\d+$/,''), parseInt(key.split('-').pop())];
+        let itemName = '';
+        PROJECTS_DATA.projects.forEach(p => p.phases.forEach(ph => {
+          if(ph.id === phaseId) itemName = ph.items[idx] || key;
+        }));
+        html += `<li>${itemName}</li>`;
+      });
+      html += '</ul>';
+    } else {
+      html += '<p style="font-size:13px;color:var(--text-light)">当天无完成记录</p>';
+    }
+  } else {
+    html += '<p style="font-size:13px;color:var(--text-light)">当天无记录</p>';
+  }
+
+  if(note) {
+    html += `<div style="margin-top:12px;padding:10px;background:var(--bg);border-radius:8px;font-size:13px">📝 ${note}</div>`;
+  }
+
+  html += '</div>';
+  document.getElementById('calendar-day-detail').innerHTML = html;
+}
+
+// ===== Weekly Checklist =====
+function renderChecklist() {
+  const wk = getWeekKey(today());
+  const checks = state.weeklyChecks[wk] || {};
+
+  document.getElementById('weekly-checklist').innerHTML = WEEKLY_CHECKLIST.map(item => {
+    const checked = checks[item.id] ? 'checked' : '';
+    const done = checks[item.id] ? 'done' : '';
+    return `
+      <div class="checklist-row">
+        <div class="cl-check ${checked}" onclick="toggleWeeklyCheck('${item.id}')"></div>
+        <span class="cl-text ${done}">${item.text}</span>
+      </div>
+    `;
+  }).join('');
+}
+
+function toggleWeeklyCheck(id) {
+  const wk = getWeekKey(today());
+  if(!state.weeklyChecks[wk]) state.weeklyChecks[wk] = {};
+  state.weeklyChecks[wk][id] = !state.weeklyChecks[wk][id];
+  saveData();
+  renderChecklist();
+}
+
+// ===== Assessment =====
+function renderAssess() {
+  document.getElementById('assess-grid').innerHTML = ASSESS_DIMS.map(dim => {
+    const lastAssess = state.assessments.length > 0 ? state.assessments[state.assessments.length-1] : null;
+    const currentVal = lastAssess ? lastAssess.results[dim.id] : '';
+    return `
+      <div class="assess-card">
+        <h4>${dim.name}</h4>
+        <div class="assess-option ${currentVal==='red'?'selected-red':''}" onclick="selectAssess('${dim.id}','red')">❌ ${dim.red}</div>
+        <div class="assess-option ${currentVal==='orange'?'selected-orange':''}" onclick="selectAssess('${dim.id}','orange')">⚠️ ${dim.orange}</div>
+        <div class="assess-option ${currentVal==='green'?'selected-green':''}" onclick="selectAssess('${dim.id}','green')">✅ ${dim.green}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+let currentAssess = {};
+function selectAssess(dimId, value) {
+  currentAssess[dimId] = value;
+  // Update UI
+  document.querySelectorAll(`.assess-option`).forEach(el => {
+    el.classList.remove('selected-red','selected-orange','selected-green');
+  });
+  // Re-render with selections
+  document.getElementById('assess-grid').innerHTML = ASSESS_DIMS.map(dim => {
+    const val = currentAssess[dim.id] || '';
+    return `
+      <div class="assess-card">
+        <h4>${dim.name}</h4>
+        <div class="assess-option ${val==='red'?'selected-red':''}" onclick="selectAssess('${dim.id}','red')">❌ ${dim.red}</div>
+        <div class="assess-option ${val==='orange'?'selected-orange':''}" onclick="selectAssess('${dim.id}','orange')">⚠️ ${dim.orange}</div>
+        <div class="assess-option ${val==='green'?'selected-green':''}" onclick="selectAssess('${dim.id}','green')">✅ ${dim.green}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+function saveAssessment() {
+  if(Object.keys(currentAssess).length === 0) {
+    alert('请先选择各项评估结果');
+    return;
+  }
+  state.assessments.push({
+    date: today(),
+    results: {...currentAssess}
+  });
+  saveData();
+  const greenCount = Object.values(currentAssess).filter(v=>v==='green').length;
+  alert(`评估已保存！\n✅ 准备好了：${greenCount}项\n⚠️ 基本可以：${Object.values(currentAssess).filter(v=>v==='orange').length}项\n❌ 还没准备好：${Object.values(currentAssess).filter(v=>v==='red').length}项\n\n${greenCount>=3?'环境迁移基本完成，适应会很快':'重点多创造群体场景，在家练再多迁移不过去也没用'}`);
+}
+
+// ===== History =====
+function renderHistory() {
+  const dates = Object.keys(state.records).sort().reverse();
+  if(dates.length === 0) {
+    document.getElementById('history-list').innerHTML = '<p style="color:var(--text-light);text-align:center;padding:40px">暂无记录，开始记录你的第一天吧！</p>';
+    return;
+  }
+
+  document.getElementById('history-list').innerHTML = dates.slice(0, 60).map(dateStr => {
+    const record = state.records[dateStr];
+    const doneCount = Object.values(record.items || {}).filter(v=>v).length;
+    const note = state.dailyNotes[dateStr] || '';
+    return `
+      <div class="history-item">
+        <div class="history-date">${dateStr}</div>
+        <div class="history-summary">完成 ${doneCount} 项任务</div>
+        <div class="history-detail">${note ? '📝 ' + note.substring(0, 30) + (note.length>30?'...':'') : ''}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+// ===== Export / Import =====
+function exportData() {
+  const blob = new Blob([JSON.stringify(state, null, 2)], {type: 'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `kids-learning-${today()}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function importDataPrompt() {
+  document.getElementById('import-input').click();
+}
+
+function importData(event) {
+  const file = event.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const data = JSON.parse(e.target.result);
+      if(data.records) {
+        state = data;
+        saveData();
+        alert('导入成功！');
+        switchPage('dashboard');
+      } else {
+        alert('文件格式不正确');
+      }
+    } catch(err) {
+      alert('文件解析失败：' + err.message);
+    }
+  };
+  reader.readAsText(file);
+  event.target.value = '';
+}
+
+// ===== Sidebar Projects =====
+function renderSidebarProjects() {
+  document.getElementById('sidebar-projects').innerHTML = PROJECTS_DATA.projects.map(proj =>
+    `<div class="nav-item" onclick="openProject('${proj.id}')">
+      <span class="emoji">${proj.icon}</span> ${proj.name}
+    </div>`
+  ).join('');
+}
+
+// ===== Init =====
+function init() {
+  renderSidebarProjects();
+  renderDashboard();
+}
+
+init();
+</script>
+</body>
+</html>

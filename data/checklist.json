@@ -1,0 +1,15 @@
+{
+  "weeklyChecklist": [
+    {"id": "w1", "text": "每天亲子阅读20分钟，坚持了至少5天", "category": "reading"},
+    {"id": "w2", "text": "孩子每天21:00前上床", "category": "habit"},
+    {"id": "w3", "text": "孩子自己穿衣、吃饭、收拾书包", "category": "habit"},
+    {"id": "w4", "text": "有一次专注力训练活动（≥20分钟）", "category": "habit"},
+    {"id": "w5", "text": "有一次有干扰环境下的专注训练", "category": "social"},
+    {"id": "w6", "text": "本周有一次群体活动/兴趣班/同伴游戏", "category": "social"},
+    {"id": "w7", "text": "练了一次等待中的专注", "category": "social"},
+    {"id": "w8", "text": "有一次数学/识字融入生活的游戏", "category": "math"},
+    {"id": "w9", "text": "睡前和孩子聊了今天的事", "category": "psychology"},
+    {"id": "w10", "text": "没有对孩子发过你怎么连这个都不会的火", "category": "psychology"},
+    {"id": "w11", "text": "夸了孩子至少3次具体的进步", "category": "psychology"}
+  ]
+}

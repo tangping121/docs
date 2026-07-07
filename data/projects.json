@@ -1,0 +1,79 @@
+{
+  "projects": [
+    {
+      "id": "habit",
+      "name": "习惯养成",
+      "icon": "🎯",
+      "color": "#4A90D9",
+      "description": "作息规律、专注力、自理能力",
+      "phases": [
+        {"id": "habit-sleep", "name": "作息规律", "items": ["7:00起床自己穿衣", "7:30早餐15-20分钟吃完", "21:00前上床", "午睡逐步缩短"]},
+        {"id": "habit-focus", "name": "专注力训练", "items": ["安静环境专注15-30分钟", "有干扰时能自己拉回来", "群体中能自己做自己的", "无关注时能独立完成"]},
+        {"id": "habit-selfcare", "name": "自理能力", "items": ["自己穿脱衣服", "自己吃饭不追喂", "自己上厕所", "自己收拾玩具/书包", "清楚表达需求"]}
+      ]
+    },
+    {
+      "id": "reading",
+      "name": "阅读与识字",
+      "icon": "📖",
+      "color": "#F5A623",
+      "description": "亲子阅读、生活识字、拼音启蒙",
+      "phases": [
+        {"id": "reading-daily", "name": "亲子阅读", "items": ["每天20分钟亲子阅读", "指读练习", "孩子复述故事"]},
+        {"id": "reading-words", "name": "识字", "items": ["路牌/标签/包装认字", "认识200-300字", "不用字卡机械记忆"]},
+        {"id": "reading-pinyin", "name": "拼音启蒙", "items": ["听拼音儿歌", "拼音卡片游戏", "有初步印象即可"]}
+      ]
+    },
+    {
+      "id": "math",
+      "name": "数学与逻辑",
+      "icon": "🔢",
+      "color": "#52C41A",
+      "description": "数感、运算启蒙、空间方位、时间认知",
+      "phases": [
+        {"id": "math-count", "name": "数感", "items": ["数1-100", "理解多几个少几个", "数楼梯/水果/筷子"]},
+        {"id": "math-calc", "name": "运算启蒙", "items": ["10以内分合（分糖果）", "理解加减概念", "不用会写算式"]},
+        {"id": "math-space", "name": "空间与方位", "items": ["分清左右", "理解上下前后", "听懂方位指令"]},
+        {"id": "math-time", "name": "时间认知", "items": ["认识钟表整点半点", "理解5分钟概念", "用沙漏感知时间"]},
+        {"id": "math-logic", "name": "逻辑思维", "items": ["按属性分类", "找规律ABAB", "简单排序"]}
+      ]
+    },
+    {
+      "id": "writing",
+      "name": "书写准备",
+      "icon": "✏️",
+      "color": "#9B59B6",
+      "description": "控笔训练、描红、握笔姿势",
+      "phases": [
+        {"id": "writing-lines", "name": "线条练习", "items": ["涂色不出框", "画横线竖线斜线波浪线"]},
+        {"id": "writing-shape", "name": "形状描红", "items": ["描红圆圈", "描红三角形", "描红正方形"]},
+        {"id": "writing-chars", "name": "汉字描红", "items": ["描红一二三", "描红十人", "描红口", "正确握笔姿势"]}
+      ]
+    },
+    {
+      "id": "social",
+      "name": "表达与社交",
+      "icon": "🗣️",
+      "color": "#E74C3C",
+      "description": "自我表达、社交能力、抗干扰",
+      "phases": [
+        {"id": "social-express", "name": "自我表达", "items": ["睡前今日回顾", "自我介绍练习", "举手发言模拟"]},
+        {"id": "social-interact", "name": "社交能力", "items": ["自己买东西", "约同伴一起完成任务", "练习分享和轮流"]},
+        {"id": "social-distraction", "name": "抗干扰训练", "items": ["轻度干扰环境专注", "中度干扰环境专注", "模拟同学效应"]},
+        {"id": "social-wait", "name": "等待专注", "items": ["延迟满足练习", "排队等待练习", "轮流活动", "无关注自处"]}
+      ]
+    },
+    {
+      "id": "psychology",
+      "name": "心理建设",
+      "icon": "💖",
+      "color": "#FF6B81",
+      "description": "期待小学、抗挫力、入学准备",
+      "phases": [
+        {"id": "psy-lookforward", "name": "期待小学", "items": ["路过小学看看", "聊聊上小学的好事", "不用负面话语吓孩子"]},
+        {"id": "psy-resilience", "name": "抗挫力", "items": ["允许犯错", "做不好不批评", "重点再试一次"]},
+        {"id": "psy-prepare", "name": "入学准备", "items": ["一起选购文具", "布置学习角", "入学倒计时日历", "反复强调有困难找老师"]}
+      ]
+    }
+  ]
+}
