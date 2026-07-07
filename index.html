@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>幼小衔接 · 每日学习记录</title>
+<meta name="theme-color" content="#1a1a2e">
+<link rel="manifest" href="manifest.json">
 <style>
 :root {
   --primary: #4A90D9;
@@ -51,92 +53,51 @@ body {
   padding: 24px 20px 16px;
   border-bottom: 1px solid rgba(255,255,255,0.1);
 }
-.sidebar-header h1 {
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 4px;
-}
-.sidebar-header p {
-  font-size: 12px;
-  opacity: 0.6;
-}
+.sidebar-header h1 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+.sidebar-header p { font-size: 12px; opacity: 0.6; }
 .nav-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 20px;
-  cursor: pointer;
-  transition: background 0.2s;
-  font-size: 14px;
-  border-left: 3px solid transparent;
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 20px; cursor: pointer; transition: background 0.2s;
+  font-size: 14px; border-left: 3px solid transparent;
 }
 .nav-item:hover { background: rgba(255,255,255,0.08); }
-.nav-item.active {
-  background: rgba(255,255,255,0.12);
-  border-left-color: var(--primary);
-}
+.nav-item.active { background: rgba(255,255,255,0.12); border-left-color: var(--primary); }
 .nav-item .emoji { font-size: 18px; }
-.nav-item .count {
-  margin-left: auto;
-  background: rgba(255,255,255,0.15);
-  border-radius: 10px;
-  padding: 1px 8px;
-  font-size: 11px;
+.nav-item .badge {
+  margin-left: auto; background: var(--red); border-radius: 10px;
+  padding: 1px 7px; font-size: 11px; font-weight: 700; min-width: 18px; text-align: center;
 }
-.nav-divider {
-  height: 1px;
-  background: rgba(255,255,255,0.08);
-  margin: 4px 16px;
-}
+.nav-item .badge.green-badge { background: var(--green); }
+.nav-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 4px 16px; }
 .nav-section-title {
-  padding: 16px 20px 8px;
-  font-size: 11px;
-  text-transform: uppercase;
-  opacity: 0.4;
-  letter-spacing: 1px;
+  padding: 16px 20px 8px; font-size: 11px;
+  text-transform: uppercase; opacity: 0.4; letter-spacing: 1px;
 }
 
 /* Main */
-.main {
-  margin-left: var(--sidebar-w);
-  flex: 1;
-  min-height: 100vh;
-}
+.main { margin-left: var(--sidebar-w); flex: 1; min-height: 100vh; }
 
 /* Top bar */
 .topbar {
-  background: var(--card);
-  padding: 16px 32px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid var(--border);
-  position: sticky;
-  top: 0;
-  z-index: 50;
+  background: var(--card); padding: 16px 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 50;
 }
 .topbar-left { display:flex; align-items:center; gap:12px; }
 .topbar-left h2 { font-size:20px; font-weight:700; }
 .topbar-date {
-  background: var(--primary-light);
-  color: var(--primary);
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 13px;
-  font-weight: 600;
+  background: var(--primary-light); color: var(--primary);
+  padding: 4px 12px; border-radius: 20px; font-size: 13px; font-weight: 600;
+}
+.topbar-phase {
+  background: var(--accent-light); color: var(--accent);
+  padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;
 }
 .topbar-right { display:flex; gap:8px; }
 .btn {
-  padding: 8px 16px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 13px;
-  font-weight: 600;
-  transition: all 0.2s;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
+  padding: 8px 16px; border: none; border-radius: 8px; cursor: pointer;
+  font-size: 13px; font-weight: 600; transition: all 0.2s;
+  display: inline-flex; align-items: center; gap: 6px;
 }
 .btn-primary { background: var(--primary); color: #fff; }
 .btn-primary:hover { background: #357ABD; }
@@ -147,23 +108,16 @@ body {
 .btn-sm { padding: 4px 10px; font-size: 12px; }
 
 /* Content */
-.content {
-  padding: 24px 32px;
-  max-width: 1100px;
-}
+.content { padding: 24px 32px; max-width: 1100px; }
 
 /* Stats Row */
 .stats-row {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 16px; margin-bottom: 24px;
 }
 .stat-card {
-  background: var(--card);
-  border-radius: var(--radius);
-  padding: 20px;
-  box-shadow: var(--shadow);
+  background: var(--card); border-radius: var(--radius);
+  padding: 20px; box-shadow: var(--shadow);
 }
 .stat-card .label { font-size: 13px; color: var(--text-light); margin-bottom: 4px; }
 .stat-card .value { font-size: 28px; font-weight: 800; }
@@ -171,20 +125,72 @@ body {
 
 /* Page sections */
 .page { display: none; }
-.page.active { display: block; }
+.page.active { display: block; animation: fadeIn 0.3s ease; }
+
+/* Recommendation */
+.recommend-card {
+  background: linear-gradient(135deg, #4A90D9 0%, #357ABD 100%);
+  color: #fff; border-radius: var(--radius);
+  padding: 20px 24px; margin-bottom: 20px; box-shadow: var(--shadow);
+}
+.recommend-card h4 { font-size:16px; margin-bottom:8px; }
+.recommend-card .phase-tag {
+  display: inline-block; background: rgba(255,255,255,0.2);
+  border-radius: 12px; padding: 2px 12px; font-size: 12px; margin-bottom: 10px;
+}
+.recommend-items {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 8px;
+}
+.recommend-item {
+  background: rgba(255,255,255,0.15); border-radius: 8px;
+  padding: 10px 14px; font-size: 13px; cursor: pointer;
+  transition: background 0.2s; display: flex; align-items: center; gap: 8px;
+}
+.recommend-item:hover { background: rgba(255,255,255,0.25); }
+.recommend-item .ri-check {
+  width: 18px; height: 18px; border-radius: 5px; border: 2px solid rgba(255,255,255,0.5);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  transition: all 0.2s;
+}
+.recommend-item.done { opacity: 0.7; }
+.recommend-item.done .ri-check {
+  background: #fff; border-color: #fff; color: var(--primary);
+}
+.recommend-item.done .ri-check::after { content: "✓"; font-size: 11px; font-weight: 700; }
+.recommend-item.done .ri-text { text-decoration: line-through; }
+
+/* Achievement */
+.achievement-row {
+  display: flex; gap: 16px; overflow-x: auto; padding-bottom: 8px;
+  margin-bottom: 20px;
+}
+.achievement-badge {
+  background: var(--card); border-radius: var(--radius);
+  padding: 16px; min-width: 130px; text-align: center;
+  box-shadow: var(--shadow); position: relative; flex-shrink: 0;
+  transition: transform 0.2s;
+}
+.achievement-badge:hover { transform: translateY(-2px); }
+.achievement-badge.locked { opacity: 0.5; filter: grayscale(1); }
+.achievement-badge .ab-icon { font-size: 32px; margin-bottom: 6px; }
+.achievement-badge .ab-name { font-size: 12px; font-weight: 700; margin-bottom: 2px; }
+.achievement-badge .ab-desc { font-size: 11px; color: var(--text-light); }
+.achievement-badge .ab-check {
+  position: absolute; top: 8px; right: 8px;
+  width: 18px; height: 18px; background: var(--green);
+  border-radius: 50%; color: #fff; font-size: 10px;
+  display: flex; align-items: center; justify-content: center;
+}
 
 /* Project cards */
 .project-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 16px;
 }
 .project-card {
-  background: var(--card);
-  border-radius: var(--radius);
-  padding: 20px;
-  box-shadow: var(--shadow);
-  cursor: pointer;
+  background: var(--card); border-radius: var(--radius);
+  padding: 20px; box-shadow: var(--shadow); cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
   border-top: 3px solid var(--primary);
 }
@@ -194,197 +200,115 @@ body {
 .project-card .header .name { font-size:16px; font-weight:700; }
 .project-card .desc { font-size:13px; color:var(--text-light); margin-bottom:12px; }
 .project-card .progress-bar {
-  height: 6px;
-  background: var(--bg);
-  border-radius: 3px;
-  overflow: hidden;
-  margin-bottom: 6px;
+  height: 6px; background: var(--bg); border-radius: 3px;
+  overflow: hidden; margin-bottom: 6px;
 }
 .project-card .progress-bar .fill {
-  height: 100%;
-  border-radius: 3px;
-  transition: width 0.3s;
+  height: 100%; border-radius: 3px; transition: width 0.3s;
 }
 .project-card .progress-text { font-size:12px; color:var(--text-light); }
+.project-card .phase-tag-sm {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 8px; margin-top: 8px;
+}
+.project-card .phase-tag-sm.current { background: var(--green-light); color: var(--green); font-weight: 600; }
+.project-card .phase-tag-sm.future { background: var(--bg); color: var(--text-light); }
 
 /* Phase list */
 .phase-section { margin-bottom: 24px; }
 .phase-title {
-  font-size: 15px;
-  font-weight: 700;
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  font-size: 15px; font-weight: 700; margin-bottom: 10px;
+  display: flex; align-items: center; gap: 8px;
 }
+.phase-period { font-size: 11px; color: var(--text-light); font-weight: 400; margin-left: 4px; }
 .item-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 16px;
-  background: var(--card);
-  border-radius: 8px;
-  margin-bottom: 6px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 16px; background: var(--card); border-radius: 8px;
+  margin-bottom: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.04);
 }
 .item-row .checkbox {
-  width: 22px;
-  height: 22px;
-  border-radius: 6px;
-  border: 2px solid var(--border);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s;
-  flex-shrink: 0;
+  width: 22px; height: 22px; border-radius: 6px; border: 2px solid var(--border);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s; flex-shrink: 0;
 }
-.item-row .checkbox.checked {
-  background: var(--green);
-  border-color: var(--green);
-  color: #fff;
-}
+.item-row .checkbox.checked { background: var(--green); border-color: var(--green); color: #fff; }
 .item-row .checkbox.checked::after { content: "✓"; font-size: 13px; }
 .item-row .item-text { font-size: 14px; flex:1; }
 .item-row .item-text.done { text-decoration: line-through; color: var(--text-light); }
-.item-row .item-date { font-size: 11px; color: var(--text-light); }
 
 /* Calendar */
 .calendar-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 16px;
+  display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;
 }
 .calendar-header h3 { font-size: 18px; }
-.calendar-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 4px;
-}
-.calendar-weekday {
-  text-align: center;
-  font-size: 12px;
-  color: var(--text-light);
-  padding: 8px 0;
-  font-weight: 600;
-}
+.calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.calendar-weekday { text-align: center; font-size: 12px; color: var(--text-light); padding: 8px 0; font-weight: 600; }
 .calendar-day {
-  aspect-ratio: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background 0.2s;
-  position: relative;
+  aspect-ratio: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; border-radius: 8px;
+  cursor: pointer; font-size: 14px; transition: background 0.2s; position: relative;
 }
 .calendar-day:hover { background: var(--bg); }
 .calendar-day.today { background: var(--primary); color: #fff; font-weight: 700; }
 .calendar-day.has-record::after {
-  content: "";
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--green);
-  position: absolute;
-  bottom: 4px;
+  content: ""; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--green); position: absolute; bottom: 4px;
 }
 .calendar-day.other-month { color: var(--text-light); opacity: 0.4; }
 
 /* Daily record */
 .record-section { margin-bottom: 24px; }
 .record-card {
-  background: var(--card);
-  border-radius: var(--radius);
-  padding: 20px;
-  box-shadow: var(--shadow);
-  margin-bottom: 16px;
+  background: var(--card); border-radius: var(--radius);
+  padding: 20px; box-shadow: var(--shadow); margin-bottom: 16px;
 }
 .record-card h4 { font-size:15px; font-weight:700; margin-bottom:12px; display:flex; align-items:center; gap:8px; }
 .note-input {
-  width: 100%;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 10px 14px;
-  font-size: 14px;
-  font-family: inherit;
-  resize: vertical;
-  min-height: 60px;
+  width: 100%; border: 1px solid var(--border); border-radius: 8px;
+  padding: 10px 14px; font-size: 14px; font-family: inherit;
+  resize: vertical; min-height: 60px;
 }
 .note-input:focus { outline: none; border-color: var(--primary); }
 
 /* Weekly checklist */
 .checklist-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 0;
-  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 0; border-bottom: 1px solid var(--border);
 }
 .checklist-row:last-child { border-bottom: none; }
 .checklist-row .cl-check {
-  width: 20px; height: 20px;
-  border-radius: 50%;
-  border: 2px solid var(--border);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s;
-  flex-shrink: 0;
+  width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s; flex-shrink: 0;
 }
-.checklist-row .cl-check.checked {
-  background: var(--green);
-  border-color: var(--green);
-}
+.checklist-row .cl-check.checked { background: var(--green); border-color: var(--green); }
 .checklist-row .cl-check.checked::after { content: "✓"; color: #fff; font-size: 12px; }
 .checklist-row .cl-text { font-size: 14px; flex:1; }
 .checklist-row .cl-text.done { text-decoration: line-through; color: var(--text-light); }
 
 /* History */
 .history-item {
-  background: var(--card);
-  border-radius: var(--radius);
-  padding: 16px 20px;
-  margin-bottom: 8px;
+  background: var(--card); border-radius: var(--radius);
+  padding: 16px 20px; margin-bottom: 8px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-  display: flex;
-  align-items: center;
-  gap: 16px;
+  display: flex; align-items: center; gap: 16px;
 }
-.history-date {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--primary);
-  min-width: 90px;
-}
+.history-date { font-size: 13px; font-weight: 700; color: var(--primary); min-width: 90px; }
 .history-summary { font-size: 14px; flex:1; }
 .history-detail { font-size: 12px; color: var(--text-light); }
 
 /* Focus assessment */
 .assess-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 16px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px;
 }
 .assess-card {
-  background: var(--card);
-  border-radius: var(--radius);
-  padding: 20px;
-  box-shadow: var(--shadow);
+  background: var(--card); border-radius: var(--radius);
+  padding: 20px; box-shadow: var(--shadow);
 }
 .assess-card h4 { font-size:14px; font-weight:700; margin-bottom:12px; }
 .assess-option {
-  padding: 8px 12px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  margin-bottom: 6px;
-  cursor: pointer;
-  font-size: 13px;
-  transition: all 0.2s;
+  padding: 8px 12px; border: 1px solid var(--border); border-radius: 8px;
+  margin-bottom: 6px; cursor: pointer; font-size: 13px; transition: all 0.2s;
 }
 .assess-option:hover { border-color: var(--primary); }
 .assess-option.selected-green { background: var(--green-light); border-color: var(--green); }
@@ -392,14 +316,7 @@ body {
 .assess-option.selected-red { background: #FFF1F0; border-color: var(--red); }
 
 /* Mobile */
-.menu-toggle {
-  display: none;
-  background: none;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  padding: 4px;
-}
+.menu-toggle { display: none; background: none; border: none; font-size: 24px; cursor: pointer; padding: 4px; }
 @media (max-width: 768px) {
   .sidebar { transform: translateX(-100%); }
   .sidebar.open { transform: translateX(0); }
@@ -408,14 +325,13 @@ body {
   .stats-row { grid-template-columns: repeat(2, 1fr); }
   .content { padding: 16px; }
   .project-grid { grid-template-columns: 1fr; }
+  .recommend-items { grid-template-columns: 1fr; }
 }
 
-/* Animations */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
 }
-.page.active { animation: fadeIn 0.3s ease; }
 </style>
 </head>
 <body>
@@ -440,9 +356,12 @@ body {
     <span class="emoji">✅</span> 周检表
   </div>
   <div class="nav-divider"></div>
-  <div class="nav-section-title">评估工具</div>
+  <div class="nav-section-title">评估与成就</div>
   <div class="nav-item" data-page="assess" onclick="switchPage('assess')">
     <span class="emoji">🎯</span> 专注力评估
+  </div>
+  <div class="nav-item" data-page="achievements" onclick="switchPage('achievements')">
+    <span class="emoji">🏆</span> 成就中心 <span class="badge" id="achieve-badge"></span>
   </div>
   <div class="nav-item" data-page="history" onclick="switchPage('history')">
     <span class="emoji">📋</span> 历史记录
@@ -454,12 +373,12 @@ body {
 
 <!-- Main -->
 <div class="main">
-  <!-- Top bar -->
   <div class="topbar">
     <div class="topbar-left">
       <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
       <h2 id="page-title">今日概览</h2>
       <span class="topbar-date" id="today-date"></span>
+      <span class="topbar-phase" id="current-phase"></span>
     </div>
     <div class="topbar-right">
       <button class="btn btn-outline btn-sm" onclick="exportData()">📤 导出</button>
@@ -468,10 +387,11 @@ body {
   </div>
 
   <div class="content">
-
     <!-- Dashboard -->
     <div class="page active" id="page-dashboard">
+      <div id="recommend-section"></div>
       <div class="stats-row" id="stats-row"></div>
+      <div class="achievement-row" id="dashboard-achievements"></div>
       <div class="record-section">
         <div class="record-card">
           <h4>📝 今日学习记录</h4>
@@ -529,59 +449,70 @@ body {
       </div>
     </div>
 
+    <!-- Achievements -->
+    <div class="page" id="page-achievements">
+      <div class="record-card" style="margin-bottom:16px">
+        <h4>🏆 成就中心</h4>
+        <p style="font-size:13px;color:var(--text-light)">坚持记录，解锁成就！</p>
+        <div style="margin-top:8px;font-size:14px" id="achieve-progress"></div>
+      </div>
+      <div class="achievement-row" style="flex-wrap:wrap;overflow:visible" id="achieve-list"></div>
+    </div>
+
     <!-- History -->
     <div class="page" id="page-history">
       <div id="history-list"></div>
     </div>
-
   </div>
 </div>
 
 <input type="file" id="import-input" accept=".json" style="display:none" onchange="importData(event)">
 
 <script>
-// ===== Data Store =====
+// ===== Data =====
 const STORAGE_KEY = 'kids-learning-data';
+const START_DATE = '2026-09-01'; // 大班9月开学
+
 const PROJECTS_DATA = {
   projects: [
     {id:"habit",name:"习惯养成",icon:"🎯",color:"#4A90D9",description:"作息规律、专注力、自理能力",
       phases:[
-        {id:"habit-sleep",name:"作息规律",items:["7:00起床自己穿衣","7:30早餐15-20分钟吃完","21:00前上床","午睡逐步缩短"]},
-        {id:"habit-focus",name:"专注力训练",items:["安静环境专注15-30分钟","有干扰时能自己拉回来","群体中能自己做自己的","无关注时能独立完成"]},
-        {id:"habit-selfcare",name:"自理能力",items:["自己穿脱衣服","自己吃饭不追喂","自己上厕所","自己收拾玩具/书包","清楚表达需求"]}
+        {id:"habit-sleep",name:"作息规律",period:[9,12],items:["7:00起床自己穿衣","7:30早餐15-20分钟吃完","21:00前上床","午睡逐步缩短"]},
+        {id:"habit-focus",name:"专注力训练",period:[9,4],items:["安静环境专注15-30分钟","有干扰时能自己拉回来","群体中能自己做自己的","无关注时能独立完成"]},
+        {id:"habit-selfcare",name:"自理能力",period:[9,12],items:["自己穿脱衣服","自己吃饭不追喂","自己上厕所","自己收拾玩具/书包","清楚表达需求"]}
       ]},
     {id:"reading",name:"阅读与识字",icon:"📖",color:"#F5A623",description:"亲子阅读、生活识字、拼音启蒙",
       phases:[
-        {id:"reading-daily",name:"亲子阅读",items:["每天20分钟亲子阅读","指读练习","孩子复述故事"]},
-        {id:"reading-words",name:"识字",items:["路牌/标签/包装认字","认识200-300字","不用字卡机械记忆"]},
-        {id:"reading-pinyin",name:"拼音启蒙",items:["听拼音儿歌","拼音卡片游戏","有初步印象即可"]}
+        {id:"reading-daily",name:"亲子阅读",period:[9,8],items:["每天20分钟亲子阅读","指读练习","孩子复述故事"]},
+        {id:"reading-words",name:"识字",period:[1,8],items:["路牌/标签/包装认字","认识200-300字","不用字卡机械记忆"]},
+        {id:"reading-pinyin",name:"拼音启蒙",period:[1,8],items:["听拼音儿歌","拼音卡片游戏","有初步印象即可"]}
       ]},
     {id:"math",name:"数学与逻辑",icon:"🔢",color:"#52C41A",description:"数感、运算启蒙、空间方位、时间认知",
       phases:[
-        {id:"math-count",name:"数感",items:["数1-100","理解多几个少几个","数楼梯/水果/筷子"]},
-        {id:"math-calc",name:"运算启蒙",items:["10以内分合（分糖果）","理解加减概念","不用会写算式"]},
-        {id:"math-space",name:"空间与方位",items:["分清左右","理解上下前后","听懂方位指令"]},
-        {id:"math-time",name:"时间认知",items:["认识钟表整点半点","理解5分钟概念","用沙漏感知时间"]},
-        {id:"math-logic",name:"逻辑思维",items:["按属性分类","找规律ABAB","简单排序"]}
+        {id:"math-count",name:"数感",period:[1,6],items:["数1-100","理解多几个少几个","数楼梯/水果/筷子"]},
+        {id:"math-calc",name:"运算启蒙",period:[2,8],items:["10以内分合（分糖果）","理解加减概念","不用会写算式"]},
+        {id:"math-space",name:"空间与方位",period:[2,5],items:["分清左右","理解上下前后","听懂方位指令"]},
+        {id:"math-time",name:"时间认知",period:[3,7],items:["认识钟表整点半点","理解5分钟概念","用沙漏感知时间"]},
+        {id:"math-logic",name:"逻辑思维",period:[1,8],items:["按属性分类","找规律ABAB","简单排序"]}
       ]},
     {id:"writing",name:"书写准备",icon:"✏️",color:"#9B59B6",description:"控笔训练、描红、握笔姿势",
       phases:[
-        {id:"writing-lines",name:"线条练习",items:["涂色不出框","画横线竖线斜线波浪线"]},
-        {id:"writing-shape",name:"形状描红",items:["描红圆圈","描红三角形","描红正方形"]},
-        {id:"writing-chars",name:"汉字描红",items:["描红一二三","描红十人","描红口","正确握笔姿势"]}
+        {id:"writing-lines",name:"线条练习",period:[1,2],items:["涂色不出框","画横线竖线斜线波浪线"]},
+        {id:"writing-shape",name:"形状描红",period:[3,3],items:["描红圆圈","描红三角形","描红正方形"]},
+        {id:"writing-chars",name:"汉字描红",period:[4,8],items:["描红一二三","描红十人","描红口","正确握笔姿势"]}
       ]},
     {id:"social",name:"表达与社交",icon:"🗣️",color:"#E74C3C",description:"自我表达、社交能力、抗干扰",
       phases:[
-        {id:"social-express",name:"自我表达",items:["睡前今日回顾","自我介绍练习","举手发言模拟"]},
-        {id:"social-interact",name:"社交能力",items:["自己买东西","约同伴一起完成任务","练习分享和轮流"]},
-        {id:"social-distraction",name:"抗干扰训练",items:["轻度干扰环境专注","中度干扰环境专注","模拟同学效应"]},
-        {id:"social-wait",name:"等待专注",items:["延迟满足练习","排队等待练习","轮流活动","无关注自处"]}
+        {id:"social-express",name:"自我表达",period:[1,8],items:["睡前今日回顾","自我介绍练习","举手发言模拟"]},
+        {id:"social-interact",name:"社交能力",period:[1,8],items:["自己买东西","约同伴一起完成任务","练习分享和轮流"]},
+        {id:"social-distraction",name:"抗干扰训练",period:[1,8],items:["轻度干扰环境专注","中度干扰环境专注","模拟同学效应"]},
+        {id:"social-wait",name:"等待专注",period:[2,8],items:["延迟满足练习","排队等待练习","轮流活动","无关注自处"]}
       ]},
     {id:"psychology",name:"心理建设",icon:"💖",color:"#FF6B81",description:"期待小学、抗挫力、入学准备",
       phases:[
-        {id:"psy-lookforward",name:"期待小学",items:["路过小学看看","聊聊上小学的好事","不用负面话语吓孩子"]},
-        {id:"psy-resilience",name:"抗挫力",items:["允许犯错","做不好不批评","重点再试一次"]},
-        {id:"psy-prepare",name:"入学准备",items:["一起选购文具","布置学习角","入学倒计时日历","反复强调有困难找老师"]}
+        {id:"psy-lookforward",name:"期待小学",period:[5,8],items:["路过小学看看","聊聊上小学的好事","不用负面话语吓孩子"]},
+        {id:"psy-resilience",name:"抗挫力",period:[1,8],items:["允许犯错","做不好不批评","重点再试一次"]},
+        {id:"psy-prepare",name:"入学准备",period:[5,8],items:["一起选购文具","布置学习角","入学倒计时日历","反复强调有困难找老师"]}
       ]}
   ]
 };
@@ -608,42 +539,80 @@ const ASSESS_DIMS = [
   {id:"a5",name:"等待时表现",red:"催促、焦躁、插嘴",orange:"偶尔催促",green:"安静等待"}
 ];
 
+// ===== Achievements =====
+const ACHIEVEMENTS = [
+  {id:"a1",icon:"🌟",name:"第一步",desc:"完成第一次打卡",check: s => Object.values(s.records).some(r => Object.values(r.items||{}).some(v=>v))},
+  {id:"a2",icon:"🔥",name:"坚持3天",desc:"连续3天有记录",check: s => calcStreak() >= 3},
+  {id:"a3",icon:"💪",name:"坚持7天",desc:"连续7天有记录",check: s => calcStreak() >= 7},
+  {id:"a4",icon:"🏅",name:"坚持14天",desc:"连续14天有记录",check: s => calcStreak() >= 14},
+  {id:"a5",icon:"👑",name:"坚持30天",desc:"连续30天有记录",check: s => calcStreak() >= 30},
+  {id:"a6",icon:"📚",name:"阅读达人",desc:"亲子阅读累计打卡10次",check: s => countItemDone('reading-daily-0') >= 10},
+  {id:"a7",icon:"🧮",name:"数感启蒙",desc:"数感项目累计打卡5次",check: s => countPhaseDone('math-count') >= 5},
+  {id:"a8",icon:"✏️",name:"书写起步",desc:"完成第一次书写练习",check: s => ['writing-lines-0','writing-lines-1','writing-shape-0','writing-chars-0'].some(k => countItemDone(k) > 0)},
+  {id:"a9",icon:"🗣️",name:"社交起步",desc:"完成第一次社交训练",check: s => ['social-express-0','social-express-1','social-interact-0'].some(k => countItemDone(k) > 0)},
+  {id:"a10",icon:"🎯",name:"专注力全绿",desc:"专注力评估5项全部✅",check: s => s.assessments.length > 0 && s.assessments[s.assessments.length-1].results && Object.values(s.assessments[s.assessments.length-1].results).every(v=>v==='green')},
+  {id:"a11",icon:"✅",name:"周检满分",desc:"一周检查表全部完成",check: s => Object.values(s.weeklyChecks).some(w => Object.keys(w).length >= WEEKLY_CHECKLIST.length && Object.values(w).every(v=>v))},
+  {id:"a12",icon:"🌈",name:"六项全能",desc:"6个项目都有打卡记录",check: s => { const projs = new Set(); PROJECTS_DATA.projects.forEach(p => p.phases.forEach(ph => ph.items.forEach((_,i) => { if(countItemDone(ph.id+'-'+i)>0) projs.add(p.id); }))); return projs.size >= 6; }},
+  {id:"a13",icon:"📝",name:"笔记达人",desc:"累计写10条笔记",check: s => Object.values(s.dailyNotes).filter(n => n && n.trim().length > 0).length >= 10},
+  {id:"a14",icon:"🚀",name:"百日征途",desc:"累计记录100天",check: s => Object.keys(s.records).filter(k => Object.values(s.records[k].items||{}).some(v=>v)).length >= 100},
+  {id:"a15",icon:"🎒",name:"准备就绪",desc:"入学准备项目全部完成",check: s => countPhaseDone('psy-prepare') >= 4},
+];
+
 // ===== State =====
 let state = loadData();
 let currentMonth = new Date();
+let currentAssess = {};
 
 function defaultState() {
-  return {
-    records: {},        // { "2026-07-07": { items: {key: true}, note: "" } }
-    weeklyChecks: {},   // { "2026-W28": { w1: true, ... } }
-    assessments: [],    // [{date, results: {a1:"green",...}}]
-    dailyNotes: {}      // { "2026-07-07": "note text" }
-  };
+  return { records:{}, weeklyChecks:{}, assessments:[], dailyNotes:{}, unlockedAchievements:[] };
 }
-
 function loadData() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? JSON.parse(raw) : defaultState();
-  } catch(e) { return defaultState(); }
+  try { const r = localStorage.getItem(STORAGE_KEY); return r ? JSON.parse(r) : defaultState(); }
+  catch(e) { return defaultState(); }
 }
-
-function saveData() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-}
-
-function today() {
-  return new Date().toISOString().split('T')[0];
-}
+function saveData() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+function today() { return new Date().toISOString().split('T')[0]; }
 
 function getWeekKey(date) {
-  const d = new Date(date);
-  const start = new Date(d.getFullYear(), 0, 1);
-  const diff = d - start;
-  const oneDay = 86400000;
-  const dayOfYear = Math.floor(diff / oneDay) + 1;
-  const weekNum = Math.ceil(dayOfYear / 7);
-  return `${d.getFullYear()}-W${String(weekNum).padStart(2,'0')}`;
+  const d = new Date(date); const start = new Date(d.getFullYear(),0,1);
+  const dayOfYear = Math.floor((d - start) / 86400000) + 1;
+  return `${d.getFullYear()}-W${String(Math.ceil(dayOfYear/7)).padStart(2,'0')}`;
+}
+
+// ===== Phase Logic =====
+function getCurrentMonth() { return new Date().getMonth() + 1; }
+function getCurrentPhaseName() {
+  const m = getCurrentMonth();
+  if(m >= 9 && m <= 12) return '第一阶段 · 习惯筑基期';
+  if(m >= 1 && m <= 4) return '第二阶段 · 能力发展期';
+  return '第三阶段 · 模拟适应期';
+}
+function isPhaseCurrent(period) {
+  const m = getCurrentMonth();
+  const [start, end] = period;
+  if(start <= end) return m >= start && m <= end;
+  // wraps: e.g. [9, 4] means Sep->Apr
+  return m >= start || m <= end;
+}
+function isPhaseFuture(period) {
+  const m = getCurrentMonth();
+  const [start] = period;
+  if(start >= 9) return m < start && m >= 5;
+  return m < start;
+}
+
+function getRecommendedItems() {
+  const items = [];
+  PROJECTS_DATA.projects.forEach(proj => {
+    proj.phases.forEach(ph => {
+      if(isPhaseCurrent(ph.period)) {
+        ph.items.forEach((item, i) => {
+          items.push({ key: `${ph.id}-${i}`, text: item, projIcon: proj.icon, projName: proj.name, projColor: proj.color, phaseName: ph.name });
+        });
+      }
+    });
+  });
+  return items;
 }
 
 // ===== Navigation =====
@@ -653,27 +622,108 @@ function switchPage(pageId) {
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
   const navItem = document.querySelector(`.nav-item[data-page="${pageId}"]`);
   if(navItem) navItem.classList.add('active');
-
   const titles = {
     dashboard:'今日概览', projects:'项目管理', calendar:'日历视图',
-    checklist:'周检表', assess:'专注力评估', history:'历史记录', 'project-detail':'项目详情'
+    checklist:'周检表', assess:'专注力评估', achievements:'成就中心',
+    history:'历史记录', 'project-detail':'项目详情'
   };
   document.getElementById('page-title').textContent = titles[pageId] || '';
-
-  // Close mobile sidebar
   document.getElementById('sidebar').classList.remove('open');
+  if(pageId==='dashboard') renderDashboard();
+  if(pageId==='projects') renderProjects();
+  if(pageId==='calendar') renderCalendar();
+  if(pageId==='checklist') renderChecklist();
+  if(pageId==='assess') renderAssess();
+  if(pageId==='achievements') renderAchievements();
+  if(pageId==='history') renderHistory();
+}
+function toggleSidebar() { document.getElementById('sidebar').classList.toggle('open'); }
 
-  // Render page
-  if(pageId === 'dashboard') renderDashboard();
-  if(pageId === 'projects') renderProjects();
-  if(pageId === 'calendar') renderCalendar();
-  if(pageId === 'checklist') renderChecklist();
-  if(pageId === 'assess') renderAssess();
-  if(pageId === 'history') renderHistory();
+// ===== Achievements =====
+function calcStreak() {
+  let streak = 0; let d = new Date();
+  while(true) {
+    const key = d.toISOString().split('T')[0];
+    if(state.records[key] && Object.values(state.records[key].items||{}).some(v=>v)) { streak++; d.setDate(d.getDate()-1); }
+    else break;
+  }
+  return streak;
 }
 
-function toggleSidebar() {
-  document.getElementById('sidebar').classList.toggle('open');
+function countItemDone(key) {
+  let count = 0;
+  Object.values(state.records).forEach(r => { if(r.items && r.items[key]) count++; });
+  return count;
+}
+
+function countPhaseDone(phaseId) {
+  let count = 0;
+  PROJECTS_DATA.projects.forEach(p => p.phases.forEach(ph => {
+    if(ph.id === phaseId) ph.items.forEach((_,i) => { count += countItemDone(ph.id+'-'+i); });
+  }));
+  return count;
+}
+
+function checkAchievements() {
+  let newUnlocks = [];
+  ACHIEVEMENTS.forEach(a => {
+    if(!state.unlockedAchievements.includes(a.id) && a.check(state)) {
+      state.unlockedAchievements.push(a.id);
+      newUnlocks.push(a);
+    }
+  });
+  if(newUnlocks.length > 0) {
+    saveData();
+    newUnlocks.forEach(a => {
+      setTimeout(() => {
+        const toast = document.createElement('div');
+        toast.style.cssText = 'position:fixed;top:20px;right:20px;background:#1a1a2e;color:#fff;padding:16px 24px;border-radius:12px;z-index:9999;box-shadow:0 4px 20px rgba(0,0,0,0.2);animation:fadeIn 0.3s ease;font-size:14px;';
+        toast.innerHTML = `🎉 解锁成就！<br><strong>${a.icon} ${a.name}</strong><br><span style="opacity:0.7;font-size:12px">${a.desc}</span>`;
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 3000);
+      }, 500);
+    });
+  }
+  // Update badge
+  const badge = document.getElementById('achieve-badge');
+  if(badge) {
+    const unlocked = state.unlockedAchievements.length;
+    const total = ACHIEVEMENTS.length;
+    badge.textContent = `${unlocked}/${total}`;
+    badge.className = unlocked >= total ? 'badge green-badge' : 'badge';
+  }
+}
+
+function renderAchievements() {
+  const unlocked = state.unlockedAchievements.length;
+  const total = ACHIEVEMENTS.length;
+  document.getElementById('achieve-progress').innerHTML =
+    `已解锁 <strong>${unlocked}</strong> / ${total} 个成就`;
+
+  document.getElementById('achieve-list').innerHTML = ACHIEVEMENTS.map(a => {
+    const isUnlocked = state.unlockedAchievements.includes(a.id);
+    return `
+      <div class="achievement-badge${isUnlocked?'':' locked'}">
+        ${isUnlocked ? '<div class="ab-check">✓</div>' : ''}
+        <div class="ab-icon">${a.icon}</div>
+        <div class="ab-name">${a.name}</div>
+        <div class="ab-desc">${isUnlocked ? a.desc : '???'}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+function renderDashboardAchievements() {
+  const recent = ACHIEVEMENTS.filter(a => state.unlockedAchievements.includes(a.id)).slice(-5);
+  if(recent.length === 0) return '';
+  return recent.map(a => `
+    <div class="achievement-badge">
+      <div class="ab-check">✓</div>
+      <div class="ab-icon">${a.icon}</div>
+      <div class="ab-name">${a.name}</div>
+      <div class="ab-desc">${a.desc}</div>
+    </div>
+  `).join('');
 }
 
 // ===== Dashboard =====
@@ -687,6 +737,7 @@ function renderDashboard() {
   const weekCheckDone = getWeeklyCheckCount();
 
   document.getElementById('today-date').textContent = formatDateCN(d);
+  document.getElementById('current-phase').textContent = getCurrentPhaseName();
 
   document.getElementById('stats-row').innerHTML = `
     <div class="stat-card">
@@ -705,13 +756,35 @@ function renderDashboard() {
       <div class="sub">天</div>
     </div>
     <div class="stat-card">
-      <div class="label">本周检查</div>
-      <div class="value" style="color:var(--purple)">${weekCheckDone}/${WEEKLY_CHECKLIST.length}</div>
-      <div class="sub">项已完成</div>
+      <div class="label">成就解锁</div>
+      <div class="value" style="color:var(--purple)">${state.unlockedAchievements.length}/${ACHIEVEMENTS.length}</div>
+      <div class="sub">已获成就</div>
     </div>
   `;
 
-  // Daily items from today's quick picks
+  // Recommendation
+  const recommended = getRecommendedItems();
+  const recDone = recommended.filter(r => items[r.key]).length;
+  document.getElementById('recommend-section').innerHTML = `
+    <div class="recommend-card">
+      <h4>🌟 今日重点 · ${getCurrentPhaseName()}</h4>
+      <div class="phase-tag">本月推荐 ${recommended.length} 项 · 已完成 ${recDone} 项</div>
+      <div class="recommend-items">
+        ${recommended.map(r => {
+          const checked = items[r.key] ? ' done' : '';
+          return `<div class="recommend-item${checked}" onclick="toggleItem('${r.key}')">
+            <div class="ri-check"></div>
+            <span class="ri-text">${r.projIcon} ${r.text}</span>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>
+  `;
+
+  // Achievements on dashboard
+  document.getElementById('dashboard-achievements').innerHTML = renderDashboardAchievements();
+
+  // All daily items (collapsible)
   let html = '';
   PROJECTS_DATA.projects.forEach(proj => {
     const phaseItems = [];
@@ -720,10 +793,13 @@ function renderDashboard() {
         const key = `${ph.id}-${i}`;
         const checked = items[key] ? 'checked' : '';
         const done = items[key] ? 'done' : '';
+        const current = isPhaseCurrent(ph.period);
+        const future = isPhaseFuture(ph.period);
         phaseItems.push(`
-          <div class="item-row">
+          <div class="item-row" style="${future?'opacity:0.4':''}">
             <div class="checkbox ${checked}" onclick="toggleItem('${key}')"></div>
             <span class="item-text ${done}">${item}</span>
+            ${current?'<span style="font-size:10px;background:var(--green-light);color:var(--green);padding:1px 6px;border-radius:6px">本月</span>':''}
           </div>
         `);
       });
@@ -736,8 +812,6 @@ function renderDashboard() {
     `;
   });
   document.getElementById('daily-items').innerHTML = html;
-
-  // Note
   document.getElementById('daily-note').value = state.dailyNotes[d] || '';
 }
 
@@ -750,14 +824,10 @@ function getAllItems() {
 function getOverallProgress() {
   const allRecords = Object.values(state.records);
   if(allRecords.length === 0) return 0;
-  let totalDone = 0, totalPossible = 0;
   const allItems = getAllItems();
-  allRecords.forEach(r => {
-    const items = r.items || {};
-    totalPossible += allItems.length;
-    totalDone += Object.values(items).filter(v=>v).length;
-  });
-  return totalPossible > 0 ? (totalDone / totalPossible * 100) : 0;
+  let totalDone = 0;
+  allRecords.forEach(r => { totalDone += Object.values(r.items||{}).filter(v=>v).length; });
+  return allItems.length > 0 ? (totalDone / (allItems.length * allRecords.length) * 100) : 0;
 }
 
 function toggleItem(key) {
@@ -765,6 +835,7 @@ function toggleItem(key) {
   if(!state.records[d]) state.records[d] = {items:{}, note:''};
   state.records[d].items[key] = !state.records[d].items[key];
   saveData();
+  checkAchievements();
   renderDashboard();
 }
 
@@ -772,20 +843,8 @@ function saveDailyNote() {
   const d = today();
   state.dailyNotes[d] = document.getElementById('daily-note').value;
   saveData();
+  checkAchievements();
   alert('笔记已保存！');
-}
-
-function calcStreak() {
-  let streak = 0;
-  let d = new Date();
-  while(true) {
-    const key = d.toISOString().split('T')[0];
-    if(state.records[key] && Object.values(state.records[key].items || {}).some(v=>v)) {
-      streak++;
-      d.setDate(d.getDate() - 1);
-    } else break;
-  }
-  return streak;
 }
 
 function getWeeklyCheckCount() {
@@ -804,19 +863,14 @@ function renderProjects() {
   const grid = document.getElementById('project-grid');
   grid.innerHTML = PROJECTS_DATA.projects.map(proj => {
     const total = proj.phases.reduce((s,p)=>s+p.items.length, 0);
-    // Count unique items done across all records
     const allKeys = [];
     proj.phases.forEach(ph => ph.items.forEach((_,i) => allKeys.push(`${ph.id}-${i}`)));
-    let done = 0;
-    Object.values(state.records).forEach(r => {
-      allKeys.forEach(k => { if(r.items && r.items[k]) done++; });
-    });
-    // Simpler: count how many items have been checked at least once
     const everDone = new Set();
     Object.values(state.records).forEach(r => {
       if(r.items) Object.keys(r.items).forEach(k => { if(r.items[k] && allKeys.includes(k)) everDone.add(k); });
     });
     const pct = total > 0 ? Math.round(everDone.size / total * 100) : 0;
+    const currentPhases = proj.phases.filter(ph => isPhaseCurrent(ph.period));
 
     return `
       <div class="project-card" style="border-top-color:${proj.color}" onclick="openProject('${proj.id}')">
@@ -825,10 +879,9 @@ function renderProjects() {
           <span class="name">${proj.name}</span>
         </div>
         <div class="desc">${proj.description}</div>
-        <div class="progress-bar">
-          <div class="fill" style="width:${pct}%;background:${proj.color}"></div>
-        </div>
+        <div class="progress-bar"><div class="fill" style="width:${pct}%;background:${proj.color}"></div></div>
         <div class="progress-text">${everDone.size}/${total} 项已练习 (${pct}%)</div>
+        ${currentPhases.length > 0 ? `<div class="phase-tag-sm current">📌 本月重点：${currentPhases.map(p=>p.name).join('、')}</div>` : '<div class="phase-tag-sm future">本月无重点阶段</div>'}
       </div>
     `;
   }).join('');
@@ -837,16 +890,20 @@ function renderProjects() {
 function openProject(projId) {
   const proj = PROJECTS_DATA.projects.find(p=>p.id===projId);
   if(!proj) return;
-
   document.getElementById('page-title').textContent = proj.icon + ' ' + proj.name;
   let html = `<p style="color:var(--text-light);margin-bottom:20px">${proj.description}</p>`;
+  const d = today();
+  if(!state.records[d]) state.records[d] = {items:{}, note:''};
 
   proj.phases.forEach(ph => {
-    html += `<div class="phase-section"><div class="phase-title"><span style="color:${proj.color}">●</span> ${ph.name}</div>`;
+    const current = isPhaseCurrent(ph.period);
+    const future = isPhaseFuture(ph.period);
+    const periodText = ph.period[0] <= ph.period[1]
+      ? `${ph.period[0]}月-${ph.period[1]}月`
+      : `${ph.period[0]}月-次年${ph.period[1]}月`;
+    html += `<div class="phase-section" style="${future?'opacity:0.5':''}"><div class="phase-title"><span style="color:${proj.color}">●</span> ${ph.name} <span class="phase-period">${periodText}</span> ${current?'<span style="font-size:11px;background:var(--green-light);color:var(--green);padding:2px 8px;border-radius:8px">当前阶段</span>':''}</div>`;
     ph.items.forEach((item, i) => {
       const key = `${ph.id}-${i}`;
-      const d = today();
-      if(!state.records[d]) state.records[d] = {items:{}, note:''};
       const checked = state.records[d].items[key] ? 'checked' : '';
       const done = state.records[d].items[key] ? 'done' : '';
       html += `
@@ -870,6 +927,7 @@ function toggleItemInProject(key, projId) {
   if(!state.records[d]) state.records[d] = {items:{}, note:''};
   state.records[d].items[key] = !state.records[d].items[key];
   saveData();
+  checkAchievements();
   openProject(projId);
 }
 
@@ -878,73 +936,47 @@ function renderCalendar() {
   const year = currentMonth.getFullYear();
   const month = currentMonth.getMonth();
   document.getElementById('calendar-title').textContent = `${year}年${month+1}月`;
-
   const firstDay = new Date(year, month, 1).getDay();
   const daysInMonth = new Date(year, month+1, 0).getDate();
   const daysInPrev = new Date(year, month, 0).getDate();
   const todayStr = today();
-
   const weekdays = ['日','一','二','三','四','五','六'];
   let html = weekdays.map(w => `<div class="calendar-weekday">${w}</div>`).join('');
-
-  // Previous month
-  for(let i = firstDay - 1; i >= 0; i--) {
-    html += `<div class="calendar-day other-month">${daysInPrev - i}</div>`;
-  }
-
-  // Current month
+  for(let i = firstDay-1; i >= 0; i--) html += `<div class="calendar-day other-month">${daysInPrev-i}</div>`;
   for(let d = 1; d <= daysInMonth; d++) {
     const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
     const isToday = dateStr === todayStr;
-    const hasRecord = state.records[dateStr] && Object.values(state.records[dateStr].items || {}).some(v=>v);
+    const hasRecord = state.records[dateStr] && Object.values(state.records[dateStr].items||{}).some(v=>v);
     html += `<div class="calendar-day${isToday?' today':''}${hasRecord?' has-record':''}" onclick="showDayDetail('${dateStr}')">${d}</div>`;
   }
-
-  // Next month
   const totalCells = firstDay + daysInMonth;
   const remaining = totalCells % 7 === 0 ? 0 : 7 - (totalCells % 7);
-  for(let i = 1; i <= remaining; i++) {
-    html += `<div class="calendar-day other-month">${i}</div>`;
-  }
-
+  for(let i = 1; i <= remaining; i++) html += `<div class="calendar-day other-month">${i}</div>`;
   document.getElementById('calendar-grid').innerHTML = html;
   document.getElementById('calendar-day-detail').innerHTML = '';
 }
 
-function changeMonth(delta) {
-  currentMonth.setMonth(currentMonth.getMonth() + delta);
-  renderCalendar();
-}
+function changeMonth(delta) { currentMonth.setMonth(currentMonth.getMonth()+delta); renderCalendar(); }
 
 function showDayDetail(dateStr) {
   const record = state.records[dateStr];
   const note = state.dailyNotes[dateStr] || '';
   let html = `<div class="record-card"><h4>📋 ${formatDateCN(dateStr)}</h4>`;
-
   if(record && record.items) {
     const doneItems = Object.entries(record.items).filter(([k,v])=>v);
     if(doneItems.length > 0) {
       html += `<p style="font-size:14px;margin-bottom:8px">完成 ${doneItems.length} 项：</p><ul style="padding-left:20px;font-size:13px">`;
       doneItems.forEach(([key]) => {
-        const [phaseId, idx] = [key.replace(/-\d+$/,''), parseInt(key.split('-').pop())];
+        const phaseId = key.replace(/-\d+$/,'');
+        const idx = parseInt(key.split('-').pop());
         let itemName = '';
-        PROJECTS_DATA.projects.forEach(p => p.phases.forEach(ph => {
-          if(ph.id === phaseId) itemName = ph.items[idx] || key;
-        }));
+        PROJECTS_DATA.projects.forEach(p => p.phases.forEach(ph => { if(ph.id===phaseId) itemName = ph.items[idx]||key; }));
         html += `<li>${itemName}</li>`;
       });
       html += '</ul>';
-    } else {
-      html += '<p style="font-size:13px;color:var(--text-light)">当天无完成记录</p>';
-    }
-  } else {
-    html += '<p style="font-size:13px;color:var(--text-light)">当天无记录</p>';
-  }
-
-  if(note) {
-    html += `<div style="margin-top:12px;padding:10px;background:var(--bg);border-radius:8px;font-size:13px">📝 ${note}</div>`;
-  }
-
+    } else html += '<p style="font-size:13px;color:var(--text-light)">当天无完成记录</p>';
+  } else html += '<p style="font-size:13px;color:var(--text-light)">当天无记录</p>';
+  if(note) html += `<div style="margin-top:12px;padding:10px;background:var(--bg);border-radius:8px;font-size:13px">📝 ${note}</div>`;
   html += '</div>';
   document.getElementById('calendar-day-detail').innerHTML = html;
 }
@@ -953,76 +985,48 @@ function showDayDetail(dateStr) {
 function renderChecklist() {
   const wk = getWeekKey(today());
   const checks = state.weeklyChecks[wk] || {};
-
   document.getElementById('weekly-checklist').innerHTML = WEEKLY_CHECKLIST.map(item => {
     const checked = checks[item.id] ? 'checked' : '';
     const done = checks[item.id] ? 'done' : '';
-    return `
-      <div class="checklist-row">
-        <div class="cl-check ${checked}" onclick="toggleWeeklyCheck('${item.id}')"></div>
-        <span class="cl-text ${done}">${item.text}</span>
-      </div>
-    `;
+    return `<div class="checklist-row"><div class="cl-check ${checked}" onclick="toggleWeeklyCheck('${item.id}')"></div><span class="cl-text ${done}">${item.text}</span></div>`;
   }).join('');
 }
-
 function toggleWeeklyCheck(id) {
   const wk = getWeekKey(today());
   if(!state.weeklyChecks[wk]) state.weeklyChecks[wk] = {};
   state.weeklyChecks[wk][id] = !state.weeklyChecks[wk][id];
   saveData();
+  checkAchievements();
   renderChecklist();
 }
 
 // ===== Assessment =====
 function renderAssess() {
-  document.getElementById('assess-grid').innerHTML = ASSESS_DIMS.map(dim => {
-    const lastAssess = state.assessments.length > 0 ? state.assessments[state.assessments.length-1] : null;
-    const currentVal = lastAssess ? lastAssess.results[dim.id] : '';
-    return `
-      <div class="assess-card">
-        <h4>${dim.name}</h4>
-        <div class="assess-option ${currentVal==='red'?'selected-red':''}" onclick="selectAssess('${dim.id}','red')">❌ ${dim.red}</div>
-        <div class="assess-option ${currentVal==='orange'?'selected-orange':''}" onclick="selectAssess('${dim.id}','orange')">⚠️ ${dim.orange}</div>
-        <div class="assess-option ${currentVal==='green'?'selected-green':''}" onclick="selectAssess('${dim.id}','green')">✅ ${dim.green}</div>
-      </div>
-    `;
-  }).join('');
+  const lastAssess = state.assessments.length > 0 ? state.assessments[state.assessments.length-1] : null;
+  currentAssess = lastAssess ? {...lastAssess.results} : {};
+  renderAssessGrid();
 }
-
-let currentAssess = {};
-function selectAssess(dimId, value) {
-  currentAssess[dimId] = value;
-  // Update UI
-  document.querySelectorAll(`.assess-option`).forEach(el => {
-    el.classList.remove('selected-red','selected-orange','selected-green');
-  });
-  // Re-render with selections
+function renderAssessGrid() {
   document.getElementById('assess-grid').innerHTML = ASSESS_DIMS.map(dim => {
     const val = currentAssess[dim.id] || '';
-    return `
-      <div class="assess-card">
-        <h4>${dim.name}</h4>
-        <div class="assess-option ${val==='red'?'selected-red':''}" onclick="selectAssess('${dim.id}','red')">❌ ${dim.red}</div>
-        <div class="assess-option ${val==='orange'?'selected-orange':''}" onclick="selectAssess('${dim.id}','orange')">⚠️ ${dim.orange}</div>
-        <div class="assess-option ${val==='green'?'selected-green':''}" onclick="selectAssess('${dim.id}','green')">✅ ${dim.green}</div>
-      </div>
-    `;
+    return `<div class="assess-card"><h4>${dim.name}</h4>
+      <div class="assess-option ${val==='red'?'selected-red':''}" onclick="selectAssess('${dim.id}','red')">❌ ${dim.red}</div>
+      <div class="assess-option ${val==='orange'?'selected-orange':''}" onclick="selectAssess('${dim.id}','orange')">⚠️ ${dim.orange}</div>
+      <div class="assess-option ${val==='green'?'selected-green':''}" onclick="selectAssess('${dim.id}','green')">✅ ${dim.green}</div>
+    </div>`;
   }).join('');
 }
-
+function selectAssess(dimId, value) {
+  currentAssess[dimId] = value;
+  renderAssessGrid();
+}
 function saveAssessment() {
-  if(Object.keys(currentAssess).length === 0) {
-    alert('请先选择各项评估结果');
-    return;
-  }
-  state.assessments.push({
-    date: today(),
-    results: {...currentAssess}
-  });
+  if(Object.keys(currentAssess).length === 0) { alert('请先选择各项评估结果'); return; }
+  state.assessments.push({date: today(), results: {...currentAssess}});
   saveData();
+  checkAchievements();
   const greenCount = Object.values(currentAssess).filter(v=>v==='green').length;
-  alert(`评估已保存！\n✅ 准备好了：${greenCount}项\n⚠️ 基本可以：${Object.values(currentAssess).filter(v=>v==='orange').length}项\n❌ 还没准备好：${Object.values(currentAssess).filter(v=>v==='red').length}项\n\n${greenCount>=3?'环境迁移基本完成，适应会很快':'重点多创造群体场景，在家练再多迁移不过去也没用'}`);
+  alert(`评估已保存！\n✅ 准备好了：${greenCount}项\n⚠️ 基本可以：${Object.values(currentAssess).filter(v=>v==='orange').length}项\n❌ 还没准备好：${Object.values(currentAssess).filter(v=>v==='red').length}项\n\n${greenCount>=3?'环境迁移基本完成，适应会很快':'重点多创造群体场景'}`);
 }
 
 // ===== History =====
@@ -1032,74 +1036,54 @@ function renderHistory() {
     document.getElementById('history-list').innerHTML = '<p style="color:var(--text-light);text-align:center;padding:40px">暂无记录，开始记录你的第一天吧！</p>';
     return;
   }
-
-  document.getElementById('history-list').innerHTML = dates.slice(0, 60).map(dateStr => {
+  document.getElementById('history-list').innerHTML = dates.slice(0,60).map(dateStr => {
     const record = state.records[dateStr];
-    const doneCount = Object.values(record.items || {}).filter(v=>v).length;
+    const doneCount = Object.values(record.items||{}).filter(v=>v).length;
     const note = state.dailyNotes[dateStr] || '';
-    return `
-      <div class="history-item">
-        <div class="history-date">${dateStr}</div>
-        <div class="history-summary">完成 ${doneCount} 项任务</div>
-        <div class="history-detail">${note ? '📝 ' + note.substring(0, 30) + (note.length>30?'...':'') : ''}</div>
-      </div>
-    `;
+    return `<div class="history-item"><div class="history-date">${dateStr}</div><div class="history-summary">完成 ${doneCount} 项任务</div><div class="history-detail">${note?'📝 '+note.substring(0,30)+(note.length>30?'...':''):''}</div></div>`;
   }).join('');
 }
 
 // ===== Export / Import =====
 function exportData() {
-  const blob = new Blob([JSON.stringify(state, null, 2)], {type: 'application/json'});
+  const blob = new Blob([JSON.stringify(state,null,2)], {type:'application/json'});
   const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `kids-learning-${today()}.json`;
-  a.click();
+  const a = document.createElement('a'); a.href = url; a.download = `kids-learning-${today()}.json`; a.click();
   URL.revokeObjectURL(url);
 }
-
-function importDataPrompt() {
-  document.getElementById('import-input').click();
-}
-
+function importDataPrompt() { document.getElementById('import-input').click(); }
 function importData(event) {
-  const file = event.target.files[0];
-  if(!file) return;
+  const file = event.target.files[0]; if(!file) return;
   const reader = new FileReader();
   reader.onload = function(e) {
     try {
       const data = JSON.parse(e.target.result);
-      if(data.records) {
-        state = data;
-        saveData();
-        alert('导入成功！');
-        switchPage('dashboard');
-      } else {
-        alert('文件格式不正确');
-      }
-    } catch(err) {
-      alert('文件解析失败：' + err.message);
-    }
+      if(data.records) { state = data; if(!state.unlockedAchievements) state.unlockedAchievements=[]; saveData(); checkAchievements(); alert('导入成功！'); switchPage('dashboard'); }
+      else alert('文件格式不正确');
+    } catch(err) { alert('文件解析失败：' + err.message); }
   };
-  reader.readAsText(file);
-  event.target.value = '';
+  reader.readAsText(file); event.target.value = '';
 }
 
 // ===== Sidebar Projects =====
 function renderSidebarProjects() {
   document.getElementById('sidebar-projects').innerHTML = PROJECTS_DATA.projects.map(proj =>
-    `<div class="nav-item" onclick="openProject('${proj.id}')">
-      <span class="emoji">${proj.icon}</span> ${proj.name}
-    </div>`
+    `<div class="nav-item" onclick="openProject('${proj.id}')"><span class="emoji">${proj.icon}</span> ${proj.name}</div>`
   ).join('');
 }
 
 // ===== Init =====
 function init() {
+  if(!state.unlockedAchievements) { state.unlockedAchievements = []; saveData(); }
   renderSidebarProjects();
   renderDashboard();
-}
+  checkAchievements();
 
+  // Register service worker
+  if('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  }
+}
 init();
 </script>
 </body>
